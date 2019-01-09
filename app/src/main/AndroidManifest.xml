@@ -34,11 +34,14 @@
         <activity
             android:name=".home"
             android:label="@string/title_activity_home"
+<<<<<<< HEAD
             android:theme="@style/AppTheme" />
         <activity android:name=".create_roomActiviity"></activity>
         <meta-data
             android:name="com.google.android.gms.ads.AD_MANAGER_APP"
             android:value="true"/>
+=======
+>>>>>>> parent of 6da627c... ------
             android:theme="@style/AppTheme"></activity>
     </application>
 
