@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.krisorn.tangwong">
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application xmlns:tools="http://schemas.android.com/tools"
@@ -24,9 +24,7 @@
         <activity android:name=".UsersActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".registerActivity" />
-        <activity android:name=".user_roomActivity"></activity>
-        <activity android:name=".user_qrcode"></activity>
-
+        <activity android:name=".user_roomActivity" />
         <activity android:name=".addqActivity" />
         <activity android:name=".list_itemActivity" />
         <activity android:name=".item_detail" />
@@ -34,18 +32,12 @@
         <activity
             android:name=".home"
             android:label="@string/title_activity_home"
-<<<<<<< HEAD
-<<<<<<< HEAD
             android:theme="@style/AppTheme" />
         <activity android:name=".create_roomActiviity"></activity>
+        <activity android:name=".user_qrcode"></activity>
         <meta-data
             android:name="com.google.android.gms.ads.AD_MANAGER_APP"
             android:value="true"/>
-=======
->>>>>>> parent of 6da627c... ------
-=======
->>>>>>> parent of 6da627c... ------
-            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

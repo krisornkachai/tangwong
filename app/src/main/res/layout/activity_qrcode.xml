@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".user_qrcode" >
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/string_QR"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:hint="Enter String" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/gen_QR"
+            android:text="GENERATE QR"
+            android:layout_marginTop="10dp"/>
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:id="@+id/imageQR"/>
+        <Button
+            android:id="@+id/Scaner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="scan"
+            android:onClick="scanQRCode"
+            />
+        <TextView
+            android:text="result"
+            android:id="@+id/textScanner"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            />
+
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

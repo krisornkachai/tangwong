@@ -3,9 +3,8 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     xmlns:tools="http://schemas.android.com/tools" >
-    <!--TODO Step 2: Add ViewModel variable-->
+
     <data>
         <variable
             name="viewmodel"
@@ -14,19 +13,14 @@
 
 
 
-    <android.support.constraint.ConstraintLayout
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout_user"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".UsersActivity">
-
-        <android.support.v4.widget.DrawerLayout
-            android:id="@+id/drawer_layout_user"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            tools:openDrawer="start">
+        android:fitsSystemWindows="true"
+        tools:openDrawer="start">
         <android.support.design.widget.NavigationView
-            android:id="@+id/nav_view"
+            android:id="@+id/nav_view_user"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
@@ -34,189 +28,195 @@
             app:headerLayout="@layout/nav_header_home"
             app:menu="@menu/activity_home_drawer" />
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:ignore="MissingConstraints">
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".UsersActivity">
 
-            <android.support.design.widget.BottomNavigationView
-                android:id="@+id/bottom_nav"
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="26dp"
-                android:layout_marginEnd="25dp"
-                app:itemBackground="@color/colorPrimary"
-                app:itemIconTint="@drawable/nav_bn"
-                app:itemTextColor="@drawable/nav_bn"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:menu="@menu/bn_navigation" />
+                tools:ignore="MissingConstraints">
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/back_groud2" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/btnProfile"
-                android:layout_centerInParent="true"
-                android:orientation="vertical">
-
-                <Button
-                    android:id="@+id/btn_show_room_user"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="click"
-                    android:text="show room" />
-
-                <TextView
-                    android:id="@+id/name"
+                <android.support.design.widget.BottomNavigationView
+                    android:id="@+id/bottom_nav"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{viewmodel.name}"
-                    android:textColor="@color/com_facebook_button_border_color_focused"
-                    android:textSize="30sp" />
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="26dp"
+                    android:layout_marginEnd="25dp"
+                    app:itemBackground="@color/colorPrimary"
+                    app:itemIconTint="@drawable/nav_bn"
+                    app:itemTextColor="@drawable/nav_bn"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:menu="@menu/bn_navigation" />
 
-
-                <Button
-                    android:id="@+id/addroom"
-
-                    style="@style/Widget.AppCompat.Button.Colored"
-                    android:layout_width="wrap_content"
-
-                    android:layout_height="wrap_content"
-                    android:onClick="click"
-                    android:text="addroom" />
-
-
-                <EditText
-                    android:id="@+id/roomid"
-                    android:layout_width="308dp"
-                    android:layout_height="52dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:ems="10"
-                    android:hint="room"
-                    android:inputType="textPersonName"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/type" />
-
-                <Button
-                    android:id="@+id/q"
-                    style="@style/Widget.AppCompat.Button.Colored"
-                    android:layout_width="wrap_content"
-
-                    android:layout_height="wrap_content"
-                    android:onClick="click"
-                    android:text="joinroom" />
-
-                <Button
-                    android:id="@+id/enter"
-                    style="@style/Widget.AppCompat.Button.Colored"
-                    android:layout_width="wrap_content"
-
-                    android:layout_height="wrap_content"
-                    android:onClick="click"
-                    android:text="enterroom" />
-
-
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/profile"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_below="@+id/btnlike"
-                android:layout_centerInParent="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/profille_kri" />
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/btnProfile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/profile"
-                android:layout_centerHorizontal="true"
-                android:layout_toEndOf="@+id/profile"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/next"
-                    style="@style/Widget.AppCompat.Button.Colored"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_below="@+id/profile"
-                    android:layout_toEndOf="@+id/btn_addImage"
-                    android:onClick="signOut"
-                    android:text="signOut" />
-
-                <Button
-                    android:id="@+id/btn_addImage"
-                    style="@style/Widget.AppCompat.Button.Colored"
+                <ImageView
+                    android:id="@+id/imageView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/back_groud2" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btnProfile"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/btn_show_room_user"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="click"
+                        android:text="show room" />
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewmodel.name}"
+                        android:textColor="@color/com_facebook_button_border_color_focused"
+                        android:textSize="30sp" />
+
+
+                    <Button
+                        android:id="@+id/addroom"
+
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:onClick="click"
+                        android:text="addroom" />
+
+
+                    <EditText
+                        android:id="@+id/roomid"
+                        android:layout_width="308dp"
+                        android:layout_height="52dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:ems="10"
+                        android:hint="room"
+                        android:inputType="textPersonName"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/type" />
+
+                    <Button
+                        android:id="@+id/q"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:onClick="click"
+                        android:text="joinroom" />
+
+                    <Button
+                        android:id="@+id/enter"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:onClick="click"
+                        android:text="enterroom" />
+
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/profile"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_below="@+id/btnlike"
+                    android:layout_centerInParent="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/profille_kri" />
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/btnProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/profile"
                     android:layout_centerHorizontal="true"
                     android:layout_toEndOf="@+id/profile"
-                    android:onClick="click"
-                    android:text="add imge" />
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/next"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/profile"
+                        android:layout_toEndOf="@+id/btn_addImage"
+                        android:onClick="signOut"
+                        android:text="signOut" />
+
+                    <Button
+                        android:id="@+id/btn_addImage"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/profile"
+                        android:layout_centerHorizontal="true"
+                        android:layout_toEndOf="@+id/profile"
+                        android:onClick="click"
+                        android:text="add imge" />
 
 
-            </LinearLayout>
+                </LinearLayout>
 
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/btnlike"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/button"
-                    style="@style/Widget.AppCompat.Button.Colored"
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/btnlike"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/profile"
-                    android:onClick="click"
-                    android:text="Like" />
+                    android:layout_centerHorizontal="true"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{viewmodel.string}"
-                    android:textColor="@color/com_smart_login_code"
-                    android:textSize="18dp" />
-            </LinearLayout>
+                    <Button
+                        android:id="@+id/button"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@+id/profile"
+                        android:onClick="click"
+                        android:text="Like" />
 
-        </RelativeLayout>
-        <!--
-        <TextView
-        android:id="@+id/tv_display"
-        android:text="@{viewmodel.string}"
-        android:textSize="48sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:onClick="click"/>
-        -->
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewmodel.string}"
+                        android:textColor="@color/com_smart_login_code"
+                        android:textSize="18dp" />
+                </LinearLayout>
 
-        </android.support.v4.widget.DrawerLayout>
+            </RelativeLayout>
+            <!--
+            <TextView
+            android:id="@+id/tv_display"
+            android:text="@{viewmodel.string}"
+            android:textSize="48sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="click"/>
+            -->
+
     </android.support.constraint.ConstraintLayout>
 
+    </android.support.v4.widget.DrawerLayout>
 </layout>
