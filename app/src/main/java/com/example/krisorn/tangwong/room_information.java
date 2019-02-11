@@ -44,20 +44,20 @@ import org.w3c.dom.Text;
 
 import java.util.UUID;
 
-public class create_roomActiviity extends AppCompatActivity
+public class room_information extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
     FirebaseStorage storage;
     StorageReference storageReference;
     private ProgressDialog mProgressDialog;
-    public TextView txt_data;
-    public TextView txt_name_room;
-    public TextView txt_type_room;
+    public TextView txt_name;
+    public TextView txt_id_room;
+    public TextView txt_data_room;
     public ImageView img_room;
-    public Long roomid;
+    public String roomid;
     public Long count_own_room_count;
-    public Button btn_create_room;
+    public Button btn_genqr_room;
     public Button btn_add_img_room;
     private static final int GALLERY_INTENT =2;
     private String url =null;
@@ -65,26 +65,41 @@ public class create_roomActiviity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_room_activiity);
+        setContentView(R.layout.activity_room_information);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         mAuth = FirebaseAuth.getInstance();
         final FirebaseUser user = mAuth.getCurrentUser();
-        mProgressDialog= new ProgressDialog(this);
-        txt_data = findViewById(R.id.txt_create_room_detail);
-        txt_name_room = findViewById(R.id.txt_create_room_name);
-        txt_type_room=findViewById(R.id.txt_create_room_type);
-        btn_create_room=(Button)findViewById(R.id.btn_create_room);
-        btn_add_img_room=(Button)findViewById(R.id.btn_add_room);
+
+        txt_name = findViewById(R.id.txt_create_room_detail);
+        txt_id_room = findViewById(R.id.txt_create_room_name);
+        txt_data_room=findViewById(R.id.txt_create_room_type);
+        btn_genqr_room=(Button)findViewById(R.id.btn_create_room);
+      //  btn_add_img_room=(Button)findViewById(R.id.btn_add_room);
         img_room=(ImageView)findViewById(R.id.img_room);
 
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                roomid = dataSnapshot.child("room").getChildrenCount()+1;
-                Log.d("crateRoomid", String.valueOf(roomid));
-                count_own_room_count=dataSnapshot.child("user").child(user.getUid()).child("owner").getChildrenCount();
+               roomid = dataSnapshot.child("user").child(user.getUid()).child("livenow").getValue(String.class);
+               Log.d("room_info","roomid"+roomid);
+
+               mDatabase.child("room").child(roomid).addListenerForSingleValueEvent(new ValueEventListener() {
+                   @Override
+                   public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    txt_id_room.setText(roomid);
+                    txt_data_room.setText(dataSnapshot.child("data").getValue(String.class));
+                    txt_name.setText(dataSnapshot.child("name").getValue(String.class));
+                    Picasso.get().load(dataSnapshot.child("photoPath").getValue(String.class)).into(img_room);
+                   }
+
+                   @Override
+                   public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                   }
+               });
+
 
             }
 
@@ -94,11 +109,11 @@ public class create_roomActiviity extends AppCompatActivity
             }
         });
 
-        btn_create_room.setOnClickListener(new View.OnClickListener() {
+        btn_genqr_room.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-
+/*
                 Log.d("roomid",Long.toString(roomid));
                 mDatabase.child("room").child(Long.toString(roomid)).child("photoPath").setValue("https://firebasestorage.googleapis.com/v0/b/tangwong-862c9.appspot.com/o/Photos%2Fwww.maxpixel.net-Taxes-Control-Smart-Home-Icon-Technology-Home-3317459.png?alt=media&token=329741c8-000f-4c85-bd9f-ca5b4e99442d");
                 mDatabase.child("room").child(Long.toString(roomid)).child("name").setValue(txt_name_room.getText().toString());
@@ -108,37 +123,12 @@ public class create_roomActiviity extends AppCompatActivity
 
                 mDatabase.child("user").child(user.getUid()).child("owner").child(String.valueOf(count_own_room_count)).setValue((Long.toString(roomid)));
 
-                showAlertDialog();
 
-                mDatabase.child("room").child(String.valueOf(roomid)).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        mDatabase.child("room").child(String.valueOf(roomid)).child("feature").child(String.valueOf((dataSnapshot.child("feature").getChildrenCount())))
-                                .setValue("info_room");
-                        mDatabase.child("room").child(String.valueOf(roomid)).child("info_room").child("nameOfFeture").setValue("ข้อมูลห้อง");
-                        mDatabase.child("room").child(String.valueOf(roomid)).child("info_room").child("detailOfFeture").setValue("ข้อมูลห้อง");
-                        mDatabase.child("room").child(String.valueOf(roomid)).child("info_room").child("typeOfFeture").setValue("info_room");
-                        mDatabase.child("room").child(String.valueOf(roomid)).child("info_room").child("typeOfFetureShow").setValue("both");
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-
+*/
             }
         });
 
-       btn_add_img_room.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               Intent intent =new Intent(Intent.ACTION_PICK);
-               intent.setType("image/*");
-               startActivityForResult(intent,GALLERY_INTENT);
-           }
-       });
+
 
         //side bar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_user);
@@ -220,71 +210,8 @@ public class create_roomActiviity extends AppCompatActivity
         return true;
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==GALLERY_INTENT && resultCode==RESULT_OK){
-
-            Uri uri=data.getData();
-            storage = FirebaseStorage.getInstance();
-            storageReference = storage.getReference();
-            final StorageReference filepath = storageReference.child("Photos").child(uri.getLastPathSegment()+ UUID.randomUUID());
-
-            mProgressDialog.setMessage("Uploading....");
-            mProgressDialog.show();
-            Log.d("11111111","11111111");
-
-            filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    filepath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            Log.d("uploadscuccess", "onSuccess: uri= "+ uri.toString());
-                             url = uri.toString();
-
-                            Picasso.get().load(url).into(img_room);
-                            Toast.makeText(create_roomActiviity.this,"upload Done",Toast.LENGTH_LONG).show();
-                            mProgressDialog.dismiss();
-                        }
-                    });
-                }
-            });
-
-        }
-
-    }
-
-    private void showAlertDialog() {
-        mAuth = FirebaseAuth.getInstance();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(create_roomActiviity.this);
-        alertDialog.setTitle("สำเร็จ");
-        alertDialog.setMessage("การสร้างห้องสำเร็จแล้ว");
-
-        Log.d("showAlertDialog","showAlertDialog");
-        final EditText edtAddress = new EditText(create_roomActiviity.this);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT
-        );
 
 
 
-        edtAddress.setLayoutParams(lp);
-
-
-        alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
-            }
-
-        });
-
-
-        alertDialog.show();
-    }
 
 }
