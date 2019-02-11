@@ -67,9 +67,10 @@
                     style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/itim"
                     android:gravity="center"
                     android:onClick="click"
-                    android:layout_marginTop="20dp"
                     android:text="เพิ่มรูปภาพ"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -82,12 +83,14 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
+                    android:background="@drawable/rounded_corner"
                     android:ems="10"
+                    android:fontFamily="@font/itim"
                     android:inputType="textPersonName"
                     android:text="Room Name"
-                    android:background="@drawable/rounded_corner"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+
                     app:layout_constraintTop_toBottomOf="@+id/btn_add_room" />
 
                 <EditText
@@ -97,8 +100,9 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
-                    android:ems="10"
                     android:background="@drawable/rounded_corner"
+                    android:ems="10"
+                    android:fontFamily="@font/itim"
                     android:inputType="textPersonName"
                     android:text="Detail"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -112,8 +116,9 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
-                    android:ems="10"
                     android:background="@drawable/rounded_corner"
+                    android:ems="10"
+                    android:fontFamily="@font/itim"
                     android:inputType="textPersonName"
                     android:text="Type Room"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -122,16 +127,17 @@
 
                 <Button
                     android:id="@+id/btn_create_room"
+                    style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/itim"
                     android:text="ตั้งวง"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_create_room_type"
-                    style="@style/Widget.AppCompat.Button.Colored"/>
+                    app:layout_constraintTop_toBottomOf="@+id/txt_create_room_type" />
 
 
             </android.support.constraint.ConstraintLayout>

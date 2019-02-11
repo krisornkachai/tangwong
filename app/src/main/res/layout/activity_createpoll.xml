@@ -23,23 +23,26 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="bottom">
+
         <Button
             android:id="@+id/increase_Quize"
+            style="@style/Base.TextAppearance.AppCompat.Widget.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Add Poll"
+            android:fontFamily="@font/itim"
             android:onClick="click"
-            style="@style/Base.TextAppearance.AppCompat.Widget.Button.Colored"/>
+            android:text="Add Poll" />
 
-            <Button
-                android:id="@+id/start_question"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="start question"
-                android:layout_gravity="center"
-                android:onClick="click"
-                style="@style/Widget.AppCompat.Button.Colored" />
+        <Button
+            android:id="@+id/start_question"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/itim"
+            android:onClick="click"
+            android:text="start question" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

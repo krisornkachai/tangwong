@@ -554,9 +554,6 @@ public class UsersActivity extends AppCompatActivity
             Intent i = new Intent(this,own_room.class);
             startActivity(i);
 
-        }else if (id == R.id.nav_maps){
-            Intent i = new Intent(this, Maps_string.class);
-            startActivity(i);
         }else if(id == R.id.nav_logout){
             mAuth.signOut();
             Intent i = new Intent(this,EmailPasswordActivity.class);

@@ -35,8 +35,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:onClick="click"
                 android:layout_marginBottom="10dp"
+                android:fontFamily="@font/itim"
+                android:onClick="click"
                 android:text="PREVIOUS"></Button>
 
             <Button
@@ -44,13 +45,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="290dp"
+                android:fontFamily="@font/itim"
                 android:onClick="click"
                 android:text="NEXT"></Button>
+
             <Button
                 android:id="@+id/bn_result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="150dp"
+                android:fontFamily="@font/itim"
                 android:onClick="click"
                 android:text="DATA"></Button>
 

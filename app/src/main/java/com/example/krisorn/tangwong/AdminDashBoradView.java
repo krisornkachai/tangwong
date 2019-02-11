@@ -78,8 +78,8 @@ public class AdminDashBoradView extends AppCompatActivity
         navigationView.bringToFront();
         //end side bar
 
-        findViewById(R.id.fab).setVisibility(View.INVISIBLE);
-        findViewById(R.id.fab).setVisibility(View.GONE);
+//        findViewById(R.id.fab).setVisibility(View.INVISIBLE);
+//        findViewById(R.id.fab).setVisibility(View.GONE);
       //  findViewById(R.id.layout_add_button).setVisibility(View.INVISIBLE);
         //findViewById(R.id.layout_add_button).setVisibility(View.GONE);
         mAuth = FirebaseAuth.getInstance();

@@ -53,27 +53,29 @@
 
         <Button
             android:id="@+id/ToSearchId"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Search ID"
-            android:background="@drawable/rounded_cornor_color"
-            android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:onClick="click"/>
+            android:background="@drawable/rounded_cornor_color"
+            android:fontFamily="@font/itim"
+            android:onClick="click"
+            android:text="Search ID" />
 
         <Button
             android:id="@+id/ToSearchQRcode"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:background="@drawable/rounded_cornor_color"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:text="Search QR"
-            android:onClick="click"/>
+            android:fontFamily="@font/itim"
+            android:onClick="click"
+            android:text="Search QR" />
     </LinearLayout>
 </LinearLayout>
 

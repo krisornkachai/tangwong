@@ -23,14 +23,19 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/itim"
+        android:includeFontPadding="false"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="TungWong"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="22sp" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="มาตั้งวงกันหน่อยมั้ย" />
+        android:fontFamily="@font/itim"
+        android:text="มาตั้งวงกันหน่อยมั้ย"
+        android:textSize="22sp" />
 
 </LinearLayout>

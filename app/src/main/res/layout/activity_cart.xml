@@ -39,33 +39,37 @@
                     android:layout_margin="8dp"
                     android:gravity="center_horizontal"
                     android:orientation="horizontal">
+
                     <TextView
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/itim"
                         android:text="รวมทั้งหมด :"
-                        android:textSize="20sp"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
 
                     <TextView
+                        android:id="@+id/total"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/total"
+                        android:fontFamily="@font/itim"
                         android:text="$10,000"
-                        android:textSize="24sp"
-                        android:textColor="@android:color/background_dark" />
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="24sp" />
                 </LinearLayout>
 
                 <Button
                     android:id="@+id/btnPlaceOrder"
+                    style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentBottom="true"
                     android:layout_marginStart="0dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginBottom="0dp"
+                    android:fontFamily="@font/itim"
                     android:text="ชำระของภายในกล่อง"
                     android:textColor="@android:color/white" />
             </RelativeLayout>

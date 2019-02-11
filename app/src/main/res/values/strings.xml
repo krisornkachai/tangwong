@@ -106,10 +106,10 @@
     <string name="title_activity_main2">Main2Activity</string>
     <string name="total">Total:</string>
 
-    <color name="colorPrimary">#004d40</color>
+    <color name="colorPrimary">#168F7B</color>
     <color name="colorPrimaryDark">#00251a</color>
     <color name="colorAccent">#39796b</color>
-    <color name="overlayoutBackground">#7f333639</color>
+    <color name="overlayoutBackground">#7F8AA5BF</color>
     <color name="overlayActionBar">#0e0d0e</color>
     <string name="title_activity_home">home</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

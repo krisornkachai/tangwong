@@ -32,59 +32,62 @@
             android:layout_weight="9"
             android:weightSum="4"
             >
+
             <TextView
-                android:layout_width="match_parent"
-                android:gravity=""
-                android:layout_height="wrap_content"
                 android:id="@+id/name_room"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|start"
 
                 android:layout_marginLeft="10dp"
-                android:layout_gravity="center_vertical|start"
-                android:textAllCaps="true"
-                android:textStyle="bold"
+                android:layout_weight="1"
+                android:fontFamily="@font/itim"
+                android:gravity=""
                 android:text="name room"
-                android:layout_weight="1"
+                android:textAllCaps="true"
                 android:textColor="@color/white"
-                />
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/status_q"
-                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|start"
-                android:textAllCaps="true"
-                android:textStyle="italic"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/itim"
                 android:text="status"
-                android:layout_weight="1"
+                android:textAllCaps="true"
 
                 android:textColor="@color/white"
-                />
+                android:textStyle="italic" />
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/NumberOfItem"
-                android:layout_marginLeft="10dp"
-                android:layout_gravity="center_vertical|start"
-                android:textAllCaps="true"
-                android:layout_weight="1"
-                android:textStyle="italic"
-                android:text="number"
-                android:textColor="@color/white"
-                />
-
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/sumPice"
-                android:layout_marginLeft="10dp"
                 android:layout_gravity="center_vertical|start"
-                android:textAllCaps="true"
-                android:textStyle="italic"
+                android:layout_marginLeft="10dp"
                 android:layout_weight="1"
+                android:fontFamily="@font/itim"
+                android:text="number"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/sumPice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|start"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/itim"
+                android:includeFontPadding="false"
                 android:text="sumprice"
+                android:textAllCaps="true"
                 android:textColor="@color/fui_bgGitHub"
-                />
+                android:textStyle="italic" />
         </LinearLayout>
 
     </LinearLayout>

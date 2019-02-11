@@ -23,67 +23,71 @@
         android:paddingRight="50dp"
         android:orientation="vertical">
 
-            <EditText
-                android:background="@drawable/rounded_corner"
-                android:id="@+id/name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="name"
-                android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corner"
+            android:ems="10"
+            android:fontFamily="@font/itim"
+            android:hint="name"
+            android:inputType="textPersonName" />
 
-            <EditText
-                android:background="@drawable/rounded_corner"
-                android:id="@+id/email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:layout_marginTop="10dp"
-                android:hint="@string/email"
-                android:inputType="textPersonName"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/name" />
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_corner"
+            android:ems="10"
+            android:fontFamily="@font/itim"
+            android:hint="@string/email"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name" />
 
-            <EditText
-                android:background="@drawable/rounded_corner"
-                android:id="@+id/password"
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="password"
-                android:inputType="textPersonName"
-                app:layout_constraintTop_toBottomOf="@+id/email" />
-            <EditText
-                android:background="@drawable/rounded_corner"
-                android:layout_marginTop="10dp"
-                android:id="@+id/phone_number_register"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="phone number"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText" />
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_corner"
+            android:ems="10"
+            android:fontFamily="@font/itim"
+            android:hint="password"
+            android:inputType="textPersonName|textPassword"
+            app:layout_constraintTop_toBottomOf="@+id/email" />
 
-            <EditText
-                android:background="@drawable/rounded_corner"
-                android:layout_marginTop="10dp"
-                android:id="@+id/editText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="confirem password"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/password" />
+        <EditText
+            android:id="@+id/phone_number_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_corner"
+            android:ems="10"
+            android:fontFamily="@font/itim"
+            android:hint="phone number"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_corner"
+            android:ems="10"
+            android:fontFamily="@font/itim"
+            android:hint="confirem password"
+            android:inputType="textPersonName|textPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password" />
 
     </LinearLayout>
-
-
 
 
     <Button
@@ -95,6 +99,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:fontFamily="@font/itim"
         android:text="register"
         android:theme="@style/ThemeOverlay.MyDarkButton"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -110,6 +115,7 @@
         android:layout_marginStart="68dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
+        android:fontFamily="@font/itim"
         android:text="add image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

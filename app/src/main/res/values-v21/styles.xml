@@ -18,5 +18,8 @@
         <item name="android:textColor">@android:color/primary_text_dark</item>
         <item name="android:textStyle">normal</item>
     </style>
-
+    <style name="NavigationView" >
+        <item name="fontFamily">@font/itim</item>
+        <item name="android:textSize">16sp</item>
+    </style>
 </resources>

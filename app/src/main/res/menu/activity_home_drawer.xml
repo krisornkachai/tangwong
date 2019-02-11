@@ -1,48 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view">
+    tools:showIn="navigation_view"
+    android:fontFamily="@font/itim">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_profile"
-            android:icon="@drawable/profile"
-            android:title="โปรไฟล์" />
+    <group android:checkableBehavior="single"
+        android:fontFamily="@font/itim">
+
         <item
             android:id="@+id/nav_room"
             android:icon="@drawable/ic_room"
-            android:title="วงที่เข้าร่วม" />
+            android:title="วงที่เข้าร่วม"
+            android:fontFamily="@font/itim"/>
         <item
             android:id="@+id/nav_myroom"
             android:icon="@drawable/ic_myroom"
-            android:title="วงของฉัน" />
+            android:title="วงของฉัน"
+            android:fontFamily="@font/itim"/>
         <item
             android:id="@+id/nav_add_room"
             android:icon="@drawable/ic_add_room"
-            android:title="ตั้งวงกันเหอะ" />
+            android:title="ตั้งวงกันเหอะ"
+            android:fontFamily="@font/itim"/>
         <item
             android:id="@+id/nav_cart"
             android:icon="@drawable/ic_boxs"
-            android:title="เก็บใส่กล่อง" />
-        <item
-            android:id="@+id/nav_maps"
-            android:icon="@drawable/ic_maps_1"
-            android:title="แผนที่" />
+            android:title="เก็บใส่กล่อง"
+            android:fontFamily="@font/itim"/>
         <item
             android:id="@+id/nav_qr"
             android:icon="@drawable/ic_crop_free_black_24dp"
-            android:title="คิวอาร์โค้ด" />
-
+            android:title="คิวอาร์โค้ด"
+            android:fontFamily="@font/itim"/>
         <item
             android:id="@+id/nav_share"
             android:icon="@drawable/ic_menu_share"
-            android:title="สถานะ" />
+            android:title="สถานะ"
+            android:fontFamily="@font/itim"/>
+    </group>
+
+    <item android:title="ส่วนบัญชี">
+        <menu>
+            <item
+                android:id="@+id/nav_info_app"
+                android:icon="@drawable/ic_person"
+                android:title="ข้อมูลโปรแกรม"
+                android:fontFamily="@font/itim"/>
+
+            <item
+                android:id="@+id/nav_profile"
+                android:icon="@drawable/profile"
+                android:title="โปรไฟล์"
+                android:fontFamily="@font/itim"/>
 
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_lock_out"
-            android:title="ออกจากระบบ" />
+            android:title="ออกจากระบบ"
+            android:fontFamily="@font/itim"/>
 
-    </group>
+        </menu>
+    </item>
 
 </menu>
