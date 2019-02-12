@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,7 +34,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class showtime extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+    //    implements NavigationView.OnNavigationItemSelectedListener
+{
     private TimePicker time;
     public DatabaseReference nameCard;
     private String hr,mi;
@@ -52,6 +54,7 @@ public class showtime extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         mAuth = FirebaseAuth.getInstance();
+        final FirebaseUser user = mAuth.getCurrentUser();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_showtime);
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -112,7 +115,7 @@ public class showtime extends AppCompatActivity
 
             }
         });
-
+/*
         //side bar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_user);
         setSupportActionBar(toolbar);
@@ -126,7 +129,7 @@ public class showtime extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(showtime.this);
         navigationView.bringToFront();
         //end side bar
-
+*/
     }
 
     private class Product {
@@ -291,6 +294,8 @@ public class showtime extends AppCompatActivity
         }
     }
 
+    /*
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -339,4 +344,5 @@ public class showtime extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    */
 }
