@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,6 +30,7 @@ public class user_poll extends AppCompatActivity {
     private DatabaseReference Polldatabase;
     private FirebaseAuth mAuth;
     private String getKey ;
+    private TextView texttemp ;
     private int numBtQuiz = 0;
     List<FormObject> formObjects = new ArrayList<FormObject>();
 
@@ -35,6 +38,7 @@ public class user_poll extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_createpoll);
+        texttemp = findViewById(R.id.texttemp);
         mAuth=FirebaseAuth.getInstance();
         final FirebaseUser user = mAuth.getCurrentUser();
         Polldatabase = FirebaseDatabase.getInstance().getReference();
@@ -47,14 +51,14 @@ public class user_poll extends AppCompatActivity {
                 Log.d("follows",Long.toString(getChoice));
                 Question = dataSnapshot.child("room").child(getKey).child("Poll").child(Long.toString(getCount)).child("Topic").getValue(String.class);
                 Log.d("follows",Question);
+                texttemp.setText(Question);
                 mLinearLayout = (LinearLayout) findViewById(R.id.content_poll);
                 formBuilder = new FormBuilder(user_poll.this, mLinearLayout);
-                formObjects.add(new FormHeader().setTitle(Question));
                   if(dataSnapshot.child("room").child(getKey).child("Poll").child(Long.toString(getCount)).child("Choice").getChildrenCount() >= 1) {
                       for (int i = 0; i < getChoice; i++) {
                           formObjects.add(new FormButton()
                                   .setTitle(dataSnapshot.child("room").child(getKey).child("Poll").child(Long.toString(getCount)).child("Choice").child(Long.toString(i)).child("sub-topic").getValue(String.class))
-                                  .setBackgroundColor(Color.GREEN)
+                                  .setBackgroundColor(Color.parseColor("#6FD06F"))
                                   .setTextColor(Color.WHITE)
                                   .setRunnable(new Runnable() {
                                       @Override
@@ -81,7 +85,8 @@ public class user_poll extends AppCompatActivity {
 
      public void  click(View v){
         if(v.getId() == R.id.start_question) {
-            Intent i = new Intent(this,UsersActivity.class);
+            Toast.makeText(user_poll.this,"คุณสร้างโพลเสร็จเเล้ว",Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(this,AdminDashBoradView.class);
             startActivity(i);
 
         }else if(v.getId() == R.id.increase_Quize){
@@ -105,6 +110,8 @@ public class user_poll extends AppCompatActivity {
                         Polldatabase.child("room").child(getKey).child("Poll").child(Long.toString(getCount)).child("Choice").child(Long.toString(getChoice)).child("sub-topic").setValue(formBuilder.formMap.get("text").getValue());
                         Polldatabase.child("room").child(getKey).child("Poll").child(Long.toString(getCount)).child("Choice").child(Long.toString(getChoice)).child ("select").setValue ("0");
                         Polldatabase.child("room").child(getKey).child("Poll").child(Long.toString(getCount)).child("Choice").child (Long.toString(getChoice)).child ("number").setValue ("0");
+
+                        Toast.makeText(user_poll.this,"เพิ่มตัวเลือกเเล้ว",Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(user_poll.this,user_poll.class);
                         startActivity(i);
                     }

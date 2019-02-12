@@ -114,9 +114,25 @@ public class AddminListItemAdapter extends RecyclerView.Adapter<AddminListItemVi
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               final int i= position;
+                Log.d("onClick","onClick"+i);
 
-                Intent i = new Intent(v.getContext(),list_itemActivity.class);
-                context.startActivity(i);
+                mDatabase.child("user").child(uid).child("live").child(String.valueOf(i)).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        mDatabase.child("user").child(uid).child("liveItemNow").setValue(String.valueOf(i));
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+                Intent i2 = new Intent(context,item_detail.class);
+                context.startActivity(i2);
+              /*  Intent i = new Intent(v.getContext(),list_itemActivity.class);
+                context.startActivity(i);*/
 
                 Log.d("statusPage","can click addminlist item");
 

@@ -4,61 +4,75 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bg2_2">
     <LinearLayout
         android:id="@+id/poll_interface"
-        android:layout_marginTop="10dp"
+        android:layout_margin="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="top"
         tools:ignore="MissingConstraints">
+        <TextView
+            android:id="@+id/texttemp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="หัวข้อของโพลคุณ ?"
+            android:textSize="20dp"
+            android:background="@drawable/rounded_corner"/>
 
 
 
     </LinearLayout>
     <LinearLayout
-        android:id="@+id/content_bn_question"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:gravity="bottom">
-        <RelativeLayout
-            android:id="@+id/bn_contianer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="bottom"
-            tools:ignore="MissingConstraints">
+    <LinearLayout
+        android:id="@+id/content_bn_question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="8"
+        android:layout_marginBottom="30dp"
+        tools:ignore="MissingConstraints">
+
 
             <Button
                 android:id="@+id/bn_previous"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginBottom="10dp"
                 android:fontFamily="@font/itim"
+                android:layout_weight="2"
                 android:onClick="click"
-                android:text="PREVIOUS"></Button>
+                android:background="@drawable/rounded_cornor_color"
+                android:text="ก่อนหน้า"></Button>
+        <TextView
+            android:id="@+id/iooio"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="2"/>
 
             <Button
                 android:id="@+id/bn_next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="290dp"
                 android:fontFamily="@font/itim"
+                android:layout_weight="2"
                 android:onClick="click"
-                android:text="NEXT"></Button>
+                android:background="@drawable/rounded_corner"
+                android:text="ต่อไป"></Button>
 
-            <Button
-                android:id="@+id/bn_result"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="150dp"
-                android:fontFamily="@font/itim"
-                android:onClick="click"
-                android:text="DATA"></Button>
 
-        </RelativeLayout>/>
 
+
+    </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

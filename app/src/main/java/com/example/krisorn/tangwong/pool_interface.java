@@ -136,7 +136,7 @@ public class pool_interface extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 getKey = dataSnapshot.child("user").child(user.getUid()).child("livenow").getValue(String.class);
-                temp = dataSnapshot.child("room").child("2").child("showPoll").getValue (String.class);
+                temp = dataSnapshot.child("room").child(getKey).child("showPoll").getValue (String.class);
                 number = Integer.parseInt(temp);
             }
 
@@ -145,30 +145,32 @@ public class pool_interface extends AppCompatActivity {
 
             }
         });
-        if(v.getId() == R.id.bn_next){
-                Polldatabase.addListenerForSingleValueEvent (new ValueEventListener () {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        Log.d("follows",String.valueOf (number)+"num");
-                        Log.d("follows",String.valueOf (max)+"max");
-                        if(number < max) {
-                            getKey = dataSnapshot.child ("user").child (user.getUid ()).child ("livenow").getValue (String.class);
-                            number++;
-                            Polldatabase.child ("room").child (getKey).child ("showPoll").setValue (String.valueOf (number));
-                            formObjects.clear ();
-                            Intent i = new Intent (pool_interface.this, pool_interface.class);
-                            startActivity (i);
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+        if(v.getId() == R.id.bn_next)
+            Polldatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    Log.d("follows", String.valueOf(number) + "num");
+                    Log.d("follows", String.valueOf(max) + "max");
+                    if (number < max) {
+                        getKey = dataSnapshot.child("user").child(user.getUid()).child("livenow").getValue(String.class);
+                        number++;
+                        Polldatabase.child("room").child(getKey).child("showPoll").setValue(String.valueOf(number));
+                        formObjects.clear();
+                        Intent i = new Intent(pool_interface.this, pool_interface.class);
+                        startActivity(i);
+                    } else if (number == max) {
+                        Intent i = new Intent(pool_interface.this, pool_interfacelast.class);
+                        startActivity(i);
 
                     }
-                });
+                }
 
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-        }else if(v.getId() == R.id.bn_previous){
+                }
+            });
+        else if(v.getId() == R.id.bn_previous){
             Log.d("follows",String.valueOf (number));
             Log.d("follows","0000");
 
@@ -197,9 +199,6 @@ public class pool_interface extends AppCompatActivity {
                 });
 
 
-        }else if(v.getId() == R.id.bn_result){
-            Intent i = new Intent (this, show_data.class);
-            startActivity (i);
         }
         formObjects.clear();
 

@@ -32,6 +32,7 @@
         <activity android:name=".user_poll" />
         <activity android:name=".user_qrcode" />
         <activity android:name=".UserDashBorad" />
+        <activity android:name=".pool_interfacelast"/>
         <activity
             android:name=".show_data"
             tools:ignore="DuplicateActivity" />

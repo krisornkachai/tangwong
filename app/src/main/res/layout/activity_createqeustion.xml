@@ -4,25 +4,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/bg2_2"
     android:layout_height="match_parent">
     <LinearLayout
         android:id="@+id/content_question"
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="top"
         tools:ignore="MissingConstraints">
+        <EditText
+            android:id="@+id/edittext"
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:gravity="center_horizontal"
+            android:hint="หัวข้อของโพลคุณ ?"
+            android:background="@drawable/rounded_corner"/>
 
 
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/content_bn_question"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="bottom">
+        android:gravity="center">
 
 
         <LinearLayout
@@ -40,7 +49,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/itim"
                 android:onClick="click"
-                android:text="save" />
+                android:textSize="20dp"
+                android:text="บันทึกหัวข้อ" />
 
 
         </LinearLayout>

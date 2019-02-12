@@ -63,14 +63,21 @@ public class AddminListItemView extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
 
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mAuth = FirebaseAuth.getInstance();
+        final FirebaseUser user = mAuth.getCurrentUser();
+
+
         setContentView(R.layout.admin_dash_borad);
-        recyclerView = (RecyclerView)findViewById(R.id.nav_view_dash_board);
+        recyclerView = (RecyclerView)findViewById(R.id.list_admin_dashborad );
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         Log.d("list data","can create");
         loadListItem();
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,6 +89,34 @@ public class AddminListItemView extends AppCompatActivity
                 startActivity(i);
             }
         });
+        try {
+            mDatabase.child("user").child(user.getUid()).child("livenow").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    try{
+                    mDatabase.child("room").child(dataSnapshot.getValue(String.class)).child("owner").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if (!user.getUid().equals(dataSnapshot.getValue(String.class))) {
+                                fab.setVisibility(View.GONE);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });}
+                    catch (Exception e){}
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }catch (Exception e){}
+
 
         //side bar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_user);

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg2_2">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+    <LinearLayout
+        android:id="@+id/content_bn_question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:weightSum="8"
+        android:layout_marginBottom="30dp"
+        tools:ignore="MissingConstraints">
+        <TextView
+            android:id="@+id/textkiki"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="คุณทำโพลเสร็จเเล้ว"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_corner"
+            android:textSize="30dp"/>
+        <TextView
+            android:id="@+id/ioio"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="2"/>
+
+
+            <Button
+                android:id="@+id/bn_data"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/itim"
+                android:layout_weight="2"
+                android:onClick="click"
+                android:background="@drawable/rounded_cornor_color"
+                android:text="แสดงผลลัพธ์"></Button>
+                <TextView
+                    android:id="@+id/iooio"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="2"/>
+
+                <Button
+                    android:id="@+id/bn_endgame"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/itim"
+                    android:layout_weight="2"
+                    android:onClick="click"
+                    android:background="@drawable/rounded_cornor_color"
+                    android:text="จบการทำงาน"></Button>
+
+
+
+
+    </LinearLayout>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

@@ -3,7 +3,10 @@ package com.example.krisorn.tangwong;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -38,29 +41,37 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.integration.android.IntentIntegrator;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Calendar;
 import java.util.UUID;
 
 public class room_information extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
-    FirebaseStorage storage;
-    StorageReference storageReference;
-    private ProgressDialog mProgressDialog;
     public TextView txt_name;
     public TextView txt_id_room;
     public TextView txt_data_room;
     public ImageView img_room;
     public String roomid;
-    public Long count_own_room_count;
     public Button btn_genqr_room;
-    public Button btn_add_img_room;
-    private static final int GALLERY_INTENT =2;
-    private String url =null;
+
+    public final static int QRcodeWidth = 500 ;
+    private static final String IMAGE_DIRECTORY = "/QRcodeDemonuts";
+    Bitmap bitmap;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +82,6 @@ public class room_information extends AppCompatActivity
 
         mAuth = FirebaseAuth.getInstance();
         final FirebaseUser user = mAuth.getCurrentUser();
-
         txt_name = findViewById(R.id.txt_create_room_detail);
         txt_id_room = findViewById(R.id.txt_create_room_name);
         txt_data_room=findViewById(R.id.txt_create_room_type);
@@ -83,22 +93,20 @@ public class room_information extends AppCompatActivity
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                roomid = dataSnapshot.child("user").child(user.getUid()).child("livenow").getValue(String.class);
-               Log.d("room_info","roomid"+roomid);
-
                mDatabase.child("room").child(roomid).addListenerForSingleValueEvent(new ValueEventListener() {
                    @Override
-                   public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    txt_id_room.setText(roomid);
-                    txt_data_room.setText(dataSnapshot.child("data").getValue(String.class));
-                    txt_name.setText(dataSnapshot.child("name").getValue(String.class));
-                    Picasso.get().load(dataSnapshot.child("photoPath").getValue(String.class)).into(img_room);
-                   }
+                       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        txt_id_room.setText(roomid);
+                        txt_data_room.setText(dataSnapshot.child("data").getValue(String.class));
+                        txt_name.setText(dataSnapshot.child("name").getValue(String.class));
+                        Picasso.get().load(dataSnapshot.child("photoPath").getValue(String.class)).into(img_room);
+                       }
 
-                   @Override
-                   public void onCancelled(@NonNull DatabaseError databaseError) {
+                       @Override
+                       public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                   }
-               });
+                       }
+                   });
 
 
             }
@@ -109,24 +117,30 @@ public class room_information extends AppCompatActivity
             }
         });
 
+
         btn_genqr_room.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-/*
-                Log.d("roomid",Long.toString(roomid));
-                mDatabase.child("room").child(Long.toString(roomid)).child("photoPath").setValue("https://firebasestorage.googleapis.com/v0/b/tangwong-862c9.appspot.com/o/Photos%2Fwww.maxpixel.net-Taxes-Control-Smart-Home-Icon-Technology-Home-3317459.png?alt=media&token=329741c8-000f-4c85-bd9f-ca5b4e99442d");
-                mDatabase.child("room").child(Long.toString(roomid)).child("name").setValue(txt_name_room.getText().toString());
-                mDatabase.child("room").child(Long.toString(roomid)).child("type").setValue(txt_type_room.getText().toString());
-                mDatabase.child("room").child(Long.toString(roomid)).child("data").setValue(txt_data.getText().toString());
-                mDatabase.child("room").child(Long.toString(roomid)).child("photoPath").setValue(url);
-
-                mDatabase.child("user").child(user.getUid()).child("owner").child(String.valueOf(count_own_room_count)).setValue((Long.toString(roomid)));
-
-
-*/
+                if(txt_id_room.getText().toString().trim().length()==0){
+                    Toast.makeText(room_information.this,"Enter nameQR",Toast.LENGTH_SHORT).show();
+                }else{
+                    try{
+                        bitmap = TextToImageEncode(txt_id_room.getText().toString());
+                        img_room.setImageBitmap(bitmap);
+                        String path = saveImage(bitmap);
+                        Toast.makeText(room_information.this,"QR Code save in "+ path,Toast.LENGTH_SHORT).show();
+                    }catch (WriterException e){
+                        e.printStackTrace();
+                    }
+                }
             }
         });
+        /*Scan_QR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onActivityResult();
+            }
+        });*/
 
 
 
@@ -142,6 +156,70 @@ public class room_information extends AppCompatActivity
 //        navigationView.setNavigationItemSelectedListener(this);
 //        navigationView.bringToFront();
         //end side bar
+
+    }
+    private Bitmap TextToImageEncode(String Value) throws WriterException {
+        BitMatrix bitMatrix;
+        try {
+            bitMatrix = new MultiFormatWriter().encode(
+                    Value,
+                    BarcodeFormat.DATA_MATRIX.QR_CODE,
+                    QRcodeWidth, QRcodeWidth, null
+            );
+
+        } catch (IllegalArgumentException Illegalargumentexception) {
+
+            return null;
+        }
+        int bitMatrixWidth = bitMatrix.getWidth();
+
+        int bitMatrixHeight = bitMatrix.getHeight();
+
+        int[] pixels = new int[bitMatrixWidth * bitMatrixHeight];
+
+        for (int y = 0; y < bitMatrixHeight; y++) {
+            int offset = y * bitMatrixWidth;
+
+            for (int x = 0; x < bitMatrixWidth; x++) {
+
+                pixels[offset + x] = bitMatrix.get(x, y) ?
+                        getResources().getColor(R.color.black):getResources().getColor(R.color.white);
+            }
+        }
+        Bitmap bitmap = Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_4444);
+
+        bitmap.setPixels(pixels, 0, 500, 0, 0, bitMatrixWidth, bitMatrixHeight);
+        return bitmap;
+    }
+    public String saveImage(Bitmap myBitmap) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+        File wallpaperDirectory = new File(
+                Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY);
+        // have the object build the directory structure, if needed.
+
+        if (!wallpaperDirectory.exists()) {
+            Log.d("dirrrrrr", "" + wallpaperDirectory.mkdirs());
+            wallpaperDirectory.mkdirs();
+        }
+
+        try {
+            File f = new File(wallpaperDirectory, Calendar.getInstance()
+                    .getTimeInMillis() + ".jpg");
+            f.createNewFile();   //give read write permission
+            FileOutputStream fo = new FileOutputStream(f);
+            fo.write(bytes.toByteArray());
+            MediaScannerConnection.scanFile(this,
+                    new String[]{f.getPath()},
+                    new String[]{"image/jpeg"}, null);
+            fo.close();
+            Log.d("TAG", "File Saved::--->" + f.getAbsolutePath());
+
+            return f.getAbsolutePath();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        return "";
 
     }
 
