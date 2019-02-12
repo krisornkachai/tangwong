@@ -19,6 +19,7 @@ import com.example.krisorn.tangwong.create_event;
 import com.example.krisorn.tangwong.notification;
 import com.example.krisorn.tangwong.ownRoom.carlender;
 import com.example.krisorn.tangwong.pool_interface;
+import com.example.krisorn.tangwong.room_information;
 import com.example.krisorn.tangwong.time;
 import com.example.krisorn.tangwong.user_Question;
 import com.google.firebase.auth.FirebaseAuth;
@@ -162,6 +163,12 @@ public class AdminDashBoradAdapter extends RecyclerView.Adapter<AdminDashBoradVi
                                                     Intent i = new Intent(v.getContext(), create_event.class);
                                                     context.startActivity(i);
                                                     Log.d("statuspage","can calender_event");
+
+                                                } else if(dataSnapshot.child("typeOfFeture").getValue(String.class).equals("info_room")){
+                                                    Log.d("statusPage","can info_room");
+                                                    Intent i = new Intent(v.getContext(), room_information.class);
+                                                    context.startActivity(i);
+                                                    Log.d("statuspage","can info_room");
 
                                                 }
                                                 Log.d("statusPage","can click admin dash borad");

@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout_dash_board"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view_dash_board"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_home"
+        app:menu="@menu/activity_home_drawer" />
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Cart">
@@ -39,33 +57,37 @@
                     android:layout_margin="8dp"
                     android:gravity="center_horizontal"
                     android:orientation="horizontal">
+
                     <TextView
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/itim"
                         android:text="รวมทั้งหมด :"
-                        android:textSize="20sp"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
 
                     <TextView
+                        android:id="@+id/total"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/total"
+                        android:fontFamily="@font/itim"
                         android:text="$10,000"
-                        android:textSize="24sp"
-                        android:textColor="@android:color/background_dark" />
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="24sp" />
                 </LinearLayout>
 
                 <Button
                     android:id="@+id/btnPlaceOrder"
+                    style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentBottom="true"
                     android:layout_marginStart="0dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginBottom="0dp"
+                    android:fontFamily="@font/itim"
                     android:text="ชำระของภายในกล่อง"
                     android:textColor="@android:color/white" />
             </RelativeLayout>
@@ -73,3 +95,4 @@
 
 
 </RelativeLayout>
+</android.support.v4.widget.DrawerLayout>

@@ -13,19 +13,21 @@
         android:gravity="center"
         android:background="@drawable/bg2_8"
         tools:ignore="MissingConstraints">
-    <TextView
-        android:id="@+id/myDate"
-        android:layout_width="match_parent"
-        android:layout_margin="20dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:text="รายละเอียด"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="23sp"
-        android:background="@drawable/rounded_corner"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/myDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/rounded_corner"
+            android:fontFamily="@font/itim"
+            android:text="รายละเอียด"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="23sp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            tools:ignore="MissingConstraints" />
 
         <CalendarView
             android:id="@+id/calender"
@@ -33,27 +35,31 @@
             android:layout_height="wrap_content">
 
         </CalendarView>
+
         <Button
             android:id="@+id/button2"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/itim"
+            android:onClick="click"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:text="บันทึกวันของฉัน"
             android:textColor="@color/white"
-            android:onClick="click"
-            style="@style/Widget.AppCompat.Button.Colored"
             tools:ignore="MissingConstraints" />
+
         <Button
             android:id="@+id/button3"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/itim"
+            android:onClick="click"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:text="บันทึก"
             android:textColor="@color/white"
-            android:onClick="click"
-            style="@style/Widget.AppCompat.Button.Colored"
             tools:ignore="MissingConstraints" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

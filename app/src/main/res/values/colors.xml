@@ -6,7 +6,7 @@
     <color name="grey_500">#9E9E9E</color>
     <color name="black">#000000</color> >
     <color name="white">#ffffff</color>
-    <color name="endblue">#56B158</color>
-    <color name="startblue">#D8FFD4</color>
+    <color name="endblue">#D4E673</color>
+    <color name="startblue">#DBF6D9</color>
     <color name="graylight">#CED9DB</color>
 </resources>

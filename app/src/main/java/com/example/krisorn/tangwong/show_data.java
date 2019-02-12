@@ -1,5 +1,6 @@
 package com.example.krisorn.tangwong;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -46,7 +47,18 @@ public class show_data extends AppCompatActivity {
                     Question = dataSnapshot.child("room").child(getKey).child("Poll").child(String.valueOf (i)).child("Topic").getValue(String.class);
                     mLinearLayout = (LinearLayout) findViewById(R.id.interface_show);
                     formBuilder = new FormBuilder(show_data.this, mLinearLayout);
-                    formObjects.add(new FormElement().setTag("text").setHint(Question).setType(FormElement.Type.TEXT));
+                    formObjects.add(new FormButton()
+                            .setTitle(Question)
+                            .setBackgroundColor(Color.GRAY)
+                            .setTextColor(Color.WHITE)
+                            .setRunnable(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Log.i("Forms", formBuilder.formMap.toString());
+                                }
+                            })
+                    );
+
                     for (int j = 0;j < getChoice;j++){
                         Log.d("GGOO",dataSnapshot.child("room").child(getKey).child("Poll").child(String.valueOf (i)).child("Choice").child (String.valueOf (j)).child ("select").getValue (String.class)+" GET");
                         if(dataSnapshot.child("room").child(getKey).child("Poll").child(String.valueOf (i)).child("Choice").child (String.valueOf (j)).child ("select").getValue (String.class).equals ("1") ) {
@@ -59,7 +71,17 @@ public class show_data extends AppCompatActivity {
                         String number = dataSnapshot.child("room").child(getKey).child("Poll").child(String.valueOf (i)).child("Choice").child (Long.toString(j)).child ("number").getValue (String.class);
                         Log.d("GGOO",data+" data");
                         Log.d("GGOO",number+" number");
-                        formObjects.add(new FormElement().setTag("view").setHint(data +" Chosen :" + number ).setType(FormElement.Type.TEXTVIEW));
+                        formObjects.add(new FormButton()
+                                .setTitle(String.valueOf(j)+" "+data +" ถูกเลือกจำนวน : " + number +" คน")
+                                .setBackgroundColor(Color.alpha(10))
+                                .setTextColor(Color.WHITE)
+                                .setRunnable(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Log.i("Forms", formBuilder.formMap.toString());
+                                    }
+                                })
+                        );
                     }
 
                 }

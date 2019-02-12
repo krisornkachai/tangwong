@@ -123,7 +123,7 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusViewHolder> {
         //  TextDrawable drawable = TextDrawable.builder().buildRound(""+listData.get(position).getQuanlity(),Color.RED);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
-
+/*
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -153,7 +153,7 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusViewHolder> {
 // สุดท้ายอย่าลืม show() ด้วย
                 builder.show();
             }
-        });
+        });*/
         Log.d("list data", "can not get firebase");
         try {
             mDatabase.child("user").child(user.getUid()).child("orderNow").addListenerForSingleValueEvent(new ValueEventListener() {

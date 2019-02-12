@@ -109,15 +109,6 @@ public class UsersActivity extends AppCompatActivity
         mAuth = FirebaseAuth.getInstance();
         final FirebaseUser user = mAuth.getCurrentUser();
 
-       /* Myroom = findViewById(R.id.countMyRoom);
-        myJoinRoom=findViewById(R.id.countMyJoinRoom);
-        nameField = findViewById(R.id.name_ex);
-        phoneNumberField= findViewById(R.id.myPhoneNumber);
-        myEmail = findViewById(R.id.myEmail);
-*/
-
-
-        //bn_nav
         mProgressDialog= new ProgressDialog(this);
         mStorage=FirebaseStorage.getInstance().getReference();
         // mselectImage=(Button) findViewById(R.id.btn_addImage);
@@ -248,8 +239,8 @@ public class UsersActivity extends AppCompatActivity
                 switch (menuItem.getItemId()){
                     case R.id.home:
                         Log.d("click","click home");
-                        //  Toast.makeText(UsersActivity.this,"HOME",Toast.LENGTH_SHORT);
-                        //jump to activity
+                        Intent i3 = new Intent(UsersActivity.this,user_roomActivity.class);
+                        startActivity(i3);
                         return  true;
                     case R.id.search:
                         Log.d("click","click search");
@@ -267,8 +258,8 @@ public class UsersActivity extends AppCompatActivity
 
                     case R.id.me_profile:
                         Log.d("click","click profile");
-                        //  Toast.makeText(UsersActivity.this,"PROFLIE",Toast.LENGTH_SHORT);
-                        //jump to activity
+                        Intent i2 = new Intent(UsersActivity.this,UsersActivity.class);
+                        startActivity(i2);
                         return  true;
 
                     default:

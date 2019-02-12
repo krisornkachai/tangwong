@@ -63,14 +63,21 @@ public class AddminListItemView extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
 
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mAuth = FirebaseAuth.getInstance();
+        final FirebaseUser user = mAuth.getCurrentUser();
+
+
         setContentView(R.layout.admin_dash_borad);
-        recyclerView = (RecyclerView)findViewById(R.id.list_admin_dashborad);
+        recyclerView = (RecyclerView)findViewById(R.id.list_admin_dashborad );
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         Log.d("list data","can create");
         loadListItem();
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,6 +89,34 @@ public class AddminListItemView extends AppCompatActivity
                 startActivity(i);
             }
         });
+        try {
+            mDatabase.child("user").child(user.getUid()).child("livenow").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    try{
+                    mDatabase.child("room").child(dataSnapshot.getValue(String.class)).child("owner").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if (!user.getUid().equals(dataSnapshot.getValue(String.class))) {
+                                fab.setVisibility(View.GONE);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });}
+                    catch (Exception e){}
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }catch (Exception e){}
+
 
         //side bar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_user);
@@ -201,35 +236,45 @@ public class AddminListItemView extends AppCompatActivity
         if (id == R.id.nav_room) {
             Intent i = new Intent(this,user_roomActivity.class);
             startActivity(i);
+            return true;
         } else if (id == R.id.nav_add_room) {
             Intent i = new Intent(this,create_roomActiviity.class);
             startActivity(i);
+            return true;
 
         } else if (id == R.id.nav_profile) {
             Intent i = new Intent(this,UsersActivity.class);
             startActivity(i);
+            return true;
 
         } else if (id == R.id.nav_cart) {
             Intent i = new Intent(this,Cart.class);
             startActivity(i);
+            return true;
         } else if (id == R.id.nav_qr) {
             Intent i = new Intent(this,user_qrcode.class);
             startActivity(i);
-
+            return true;
         } else if (id == R.id.nav_share) {
             Intent i = new Intent(this,Status.class);
             startActivity(i);
+            return true;
 
         }else if(id==R.id.nav_myroom){
             Intent i = new Intent(this,own_room.class);
             startActivity(i);
-
+            return true;
+        }else if(id == R.id.nav_logout){
+            mAuth.signOut();
+            Intent i = new Intent(this,EmailPasswordActivity.class);
+            startActivity(i);
+            return true;
         }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_own_room);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_dash_board);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 
 
 }

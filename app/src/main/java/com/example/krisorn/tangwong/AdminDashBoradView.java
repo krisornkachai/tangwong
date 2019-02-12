@@ -3,6 +3,7 @@ package com.example.krisorn.tangwong;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -31,6 +32,7 @@ public class AdminDashBoradView extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
+    private BottomNavigationView bottomNavigationView;
 
     public DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
@@ -63,6 +65,50 @@ public class AdminDashBoradView extends AppCompatActivity
                 startActivity(i);
             }
         });
+/*
+        //bn_nav
+        bottomNavigationView = findViewById(R.id.bottom_nav);
+        //bottomNavigationView.setOnNavigationItemReselectedListener((BottomNavigationView.OnNavigationItemReselectedListener) mOnNavigationItemSelectedListener);
+        Log.d("cancreateNavigation","can create navigation");
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.home:
+                        Log.d("click","click home");
+                        Intent i3 = new Intent(AdminDashBoradView.this,user_roomActivity.class);
+                        startActivity(i3);
+                        return  true;
+                    case R.id.search:
+                        Log.d("click","click search");
+                        Intent i = new Intent(AdminDashBoradView.this,user_search.class);
+                        startActivity(i);
+
+                        //  Toast.makeText(UsersActivity.this,"SEARCH",Toast.LENGTH_SHORT);
+                        //jump to activity
+                        return  true;
+                    case R.id.alert:
+                        Log.d("click","click alert");
+                        Intent i1 = new Intent(AdminDashBoradView.this,StatusAlert2.class);
+                        startActivity(i1);
+                        return  true;
+
+                    case R.id.me_profile:
+                        Log.d("click","click profile");
+                        Intent i2 = new Intent(AdminDashBoradView.this,UsersActivity.class);
+                        startActivity(i2);
+                        return  true;
+
+                    default:
+                        Log.d("click","click .........");
+                        return  false;
+
+                }
+            }
+
+
+        });*/
+
 
         //side bar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_user);
@@ -78,8 +124,8 @@ public class AdminDashBoradView extends AppCompatActivity
         navigationView.bringToFront();
         //end side bar
 
-        findViewById(R.id.fab).setVisibility(View.INVISIBLE);
-        findViewById(R.id.fab).setVisibility(View.GONE);
+//        findViewById(R.id.fab).setVisibility(View.INVISIBLE);
+//        findViewById(R.id.fab).setVisibility(View.GONE);
       //  findViewById(R.id.layout_add_button).setVisibility(View.INVISIBLE);
         //findViewById(R.id.layout_add_button).setVisibility(View.GONE);
         mAuth = FirebaseAuth.getInstance();
@@ -226,36 +272,45 @@ public class AdminDashBoradView extends AppCompatActivity
         if (id == R.id.nav_room) {
             Intent i = new Intent(this,user_roomActivity.class);
             startActivity(i);
+            return true;
         } else if (id == R.id.nav_add_room) {
             Intent i = new Intent(this,create_roomActiviity.class);
             startActivity(i);
+            return true;
 
         } else if (id == R.id.nav_profile) {
             Intent i = new Intent(this,UsersActivity.class);
             startActivity(i);
+            return true;
 
         } else if (id == R.id.nav_cart) {
             Intent i = new Intent(this,Cart.class);
             startActivity(i);
+            return true;
         } else if (id == R.id.nav_qr) {
             Intent i = new Intent(this,user_qrcode.class);
             startActivity(i);
-
+            return true;
         } else if (id == R.id.nav_share) {
             Intent i = new Intent(this,Status.class);
             startActivity(i);
+            return true;
 
         }else if(id==R.id.nav_myroom){
             Intent i = new Intent(this,own_room.class);
             startActivity(i);
-
+            return true;
+        }else if(id == R.id.nav_logout){
+            mAuth.signOut();
+            Intent i = new Intent(this,EmailPasswordActivity.class);
+            startActivity(i);
+            return true;
         }
-        try{
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_own_room);
-        drawer.closeDrawer(GravityCompat.START);}
-        catch (Exception e){}
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_user);
+        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 
 
 }

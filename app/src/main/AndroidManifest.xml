@@ -25,33 +25,25 @@
         android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <application xmlns:tools="http://schemas.android.com/tools"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_logo"
         android:label="Tang Wong"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:label">
-
-
-        <!--
-             The API key for Google Maps-based APIs is defined as a string resource.
-             (See the file "res/values/google_maps_api.xml").
-             Note that the API key is linked to the encryption key used to sign the APK.
-             You need a different API key for each encryption key, including the release key that is used to
-             sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/.
-        -->
-
+        <activity android:name=".room_information"></activity>
         <activity android:name=".pool_interface" />
         <activity android:name=".StatusAlert" />
         <activity android:name=".StatusAlert2" />
         <activity android:name=".create_itemActiviity" />
         <activity android:name=".user_Question" />
         <activity android:name=".StatusCostomer" />
+        <activity android:name=".Maps_string" />
         <activity android:name=".user_InterfaceIntoRoom" />
         <activity android:name=".user_idSearch" />
         <activity android:name=".user_poll" />
         <activity android:name=".user_qrcode" />
         <activity android:name=".UserDashBorad" />
+        <activity android:name=".pool_interfacelast"/>
         <activity
             android:name=".show_data"
             tools:ignore="DuplicateActivity" />
@@ -67,6 +59,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".UsersActivity" />
+
         <activity android:name=".own_room" />
         <activity android:name=".MainActivity" />
         <activity android:name=".registerActivity" />

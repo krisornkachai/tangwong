@@ -28,22 +28,24 @@
             android:id="@+id/text_search"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:hint="ค้นหาจากรหัสไอดี"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
-            android:background="@drawable/rounded_corner"/>
+            android:background="@drawable/rounded_corner"
+            android:fontFamily="@font/itim"
+            android:hint="ค้นหาจากรหัสไอดี" />
 
         <Button
             android:id="@+id/bt_searchId"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:layout_gravity="center"
-            android:text="Search"
+            android:layout_marginTop="20dp"
             android:background="@drawable/rounded_cornor_color"
-            android:onClick="click"/>
+            android:fontFamily="@font/itim"
+            android:onClick="click"
+            android:text="Search" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

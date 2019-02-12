@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,6 +27,7 @@ public class user_Question extends AppCompatActivity {
     private DatabaseReference Polldatabase;
     private FirebaseAuth mAuth;
     private String getKey ;
+    private EditText topic ;
     private int getCount ;
     List<FormObject> formObjects = new ArrayList<FormObject>();
 
@@ -33,10 +35,7 @@ public class user_Question extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_createqeustion);
-        mLinearLayout = (LinearLayout) findViewById(R.id.content_question);
-        formBuilder = new FormBuilder(this, mLinearLayout);
-        formObjects.add(new FormElement().setTag("text").setValue("What your Poll ?").setType(FormElement.Type.TEXT));
-        formBuilder.build(formObjects);
+        topic = (EditText) findViewById(R.id.edittext);
         mAuth=FirebaseAuth.getInstance();
         final FirebaseUser user = mAuth.getCurrentUser();
 
@@ -44,7 +43,6 @@ public class user_Question extends AppCompatActivity {
 
      public void click( View v){
         if(v.getId() == R.id.save_question) {
-            Question = formBuilder.formMap.get("text").getValue();
             mAuth=FirebaseAuth.getInstance();
             final FirebaseUser user = mAuth.getCurrentUser();
 
@@ -55,7 +53,7 @@ public class user_Question extends AppCompatActivity {
                     getKey =  dataSnapshot.child("user").child(user.getUid()).child("livenow").getValue(String.class);
                     long getCount =  dataSnapshot.child("room").child(getKey).child("Poll").getChildrenCount();
                     getCount+=1;
-                    Polldatabase.child("room").child(getKey).child("Poll").child(Long.toString(getCount)).child("Topic").setValue(Question);
+                    Polldatabase.child("room").child(getKey).child("Poll").child(Long.toString(getCount)).child("Topic").setValue(topic.getText().toString());
                     Polldatabase.child("room").child(getKey).child("showPoll").setValue("1");
                     Intent i = new Intent(user_Question.this,user_poll.class);
                     startActivity(i);
