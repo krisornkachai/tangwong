@@ -228,7 +228,7 @@ public class room_information extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_user);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_dash_board);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
