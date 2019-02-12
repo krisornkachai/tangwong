@@ -5,16 +5,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/logo_design_png_transparent_7">
+    android:background="@drawable/bg2_2">
 
 
     <Spinner
         android:id="@+id/list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="20dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_cornor_color"
+        app:layout_constraintTop_toBottomOf="@+id/text"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="181dp"
-        tools:layout_editor_absoluteY="104dp">
+        tools:layout_editor_absoluteX="16dp">
 
     </Spinner>
 
@@ -22,39 +25,36 @@
     <EditText
         android:id="@+id/text"
         android:layout_width="308dp"
-        android:layout_height="49dp"
+        android:layout_height="39dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="416dp"
+        android:background="@drawable/rounded_corner"
         android:ems="10"
+        android:gravity="center"
         android:hint="text"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/setnoti"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.459"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/q" />
-
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <Button
         android:id="@+id/setnoti"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="set"
+        android:layout_marginBottom="150dp"
+        android:background="@drawable/rounded_cornor_color"
         android:onClick="click"
+        android:text="set"
+        android:theme="@style/ThemeOverlay.MyDarkButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.484"
-        android:theme="@style/ThemeOverlay.MyDarkButton"
-        style="@style/Widget.AppCompat.Button.Colored" />
+        app:layout_constraintTop_toBottomOf="@+id/list" />
 
 
 

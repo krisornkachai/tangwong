@@ -190,6 +190,7 @@ public class UsersActivity extends AppCompatActivity
                         mDatabase.child("user").child(uid).child("keep_noti").child(String.valueOf(count)).child("room").setValue(roomname);
                         mDatabase.child("user").child(uid).child("keep_noti").child(String.valueOf(count)).child("time").setValue(H);
                         mDatabase.child("user").child(uid).child("keep_noti").child(String.valueOf(count)).child("status").setValue("ยังไม่ได้ลบ");
+                       mDatabase.child("user").child(uid).child("keep_noti").child(String.valueOf(count)).child("roomid").setValue(id);
 
 
                         check = false;

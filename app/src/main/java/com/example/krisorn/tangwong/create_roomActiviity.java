@@ -121,7 +121,7 @@ public class create_roomActiviity extends AppCompatActivity
                         mDatabase.child("room").child(String.valueOf(roomid)).child("info_room").child("detailOfFeture").setValue("ข้อมูลห้อง");
                         mDatabase.child("room").child(String.valueOf(roomid)).child("info_room").child("typeOfFeture").setValue("info_room");
                         mDatabase.child("room").child(String.valueOf(roomid)).child("info_room").child("typeOfFetureShow").setValue("both");
-                        mDatabase.child("room").child(String.valueOf(roomid)).child("info_room").child ("typepicture").setValue ("https://firebasestorage.googleapis.com/v0/b/tangwong-862c9.appspot.com/o/Photos%2Fic_q.png?alt=media&token=cf77e22b-9ad7-4528-b7fe-5f26d6962560");
+                        mDatabase.child("room").child(String.valueOf(roomid)).child("info_room").child ("typepicture").setValue ("https://firebasestorage.googleapis.com/v0/b/tangwong-862c9.appspot.com/o/Photos%2Fic_detail.png?alt=media&token=e0de8a52-2782-4317-8902-bf54bd467a1f");
 
 
                     }

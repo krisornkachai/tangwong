@@ -29,6 +29,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
@@ -43,6 +44,15 @@ class StatusAdapter2ViewHolder extends RecyclerView.ViewHolder implements View.O
 
 
     public TextView txtNameRoom, txtSumPrice,txtStatus,txtNumberOfItem;
+    public ImageView cardimg;
+
+    public ImageView getCardimg() {
+        return cardimg;
+    }
+
+    public void setCardimg(ImageView cardimg) {
+        this.cardimg = cardimg;
+    }
 
     public TextView getTxtNameRoom() {
         return txtNameRoom;
@@ -84,6 +94,7 @@ class StatusAdapter2ViewHolder extends RecyclerView.ViewHolder implements View.O
         txtNumberOfItem=(TextView)itemView.findViewById(R.id.NumberOfItem);
         txtStatus= (TextView)itemView.findViewById(R.id.status_q);
         txtSumPrice= (TextView)itemView.findViewById(R.id.sumPice);
+        cardimg=(ImageView)itemView.findViewById(R.id.img_card_user_room);
     }
 
     @Override
@@ -223,10 +234,22 @@ public class StatusAdapter2Adapter extends RecyclerView.Adapter<StatusAdapter2Vi
                 Log.d("listStatus", "getuid= " + getuid);
                 String usergetUid = user.getUid();
                 //  Log.d("listEqal", dataSnapshot.child("q").child("queue").child(String.valueOf(i)).child("total").getValue(String.class));
+               // Picasso.get().load(dataSnapshot.child(String.valueOf(i)).child("room").getValue(String.class)).into(holder.cardimg);
+                mDatabase.child("room").child(dataSnapshot.child(String.valueOf(i)).child("roomid").getValue(String.class)).child("photoPath").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Picasso.get().load(dataSnapshot.getValue(String.class)).into(holder.cardimg);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
                 holder.txtNameRoom.setText(dataSnapshot.child(String.valueOf(i)).child("room").getValue(String.class));
-                holder.txtNumberOfItem.setText(" ");
+                holder.txtNumberOfItem.setText(dataSnapshot.child(String.valueOf(i)).child("time").getValue(String.class));
                 holder.txtStatus.setText(dataSnapshot.child(String.valueOf(i)).child("text").getValue(String.class));
-                holder.txtSumPrice.setText(dataSnapshot.child(String.valueOf(i)).child("time").getValue(String.class));
+                holder.txtSumPrice.setText("");
 
 //                Log.d("listStatus", dataSnapshot.child("q").child("queue").child(String.valueOf(i)).child("status").getValue(String.class));
 
