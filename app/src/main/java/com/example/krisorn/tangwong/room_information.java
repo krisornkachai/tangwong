@@ -147,15 +147,17 @@ public class room_information extends AppCompatActivity
         //side bar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_user);
         setSupportActionBar(toolbar);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_user);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_dash_board);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                room_information.this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-        //      NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_user);
-//        navigationView.setNavigationItemSelectedListener(this);
-//        navigationView.bringToFront();
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_dash_board);
+        Log.d("testSideNav","---------------");
+        navigationView.setNavigationItemSelectedListener(room_information.this);
+        navigationView.bringToFront();
         //end side bar
+
 
     }
     private Bitmap TextToImageEncode(String Value) throws WriterException {
@@ -266,28 +268,44 @@ public class room_information extends AppCompatActivity
         if (id == R.id.nav_room) {
             Intent i = new Intent(this,user_roomActivity.class);
             startActivity(i);
+            return true;
         } else if (id == R.id.nav_add_room) {
             Intent i = new Intent(this,create_roomActiviity.class);
             startActivity(i);
+            return true;
 
         } else if (id == R.id.nav_profile) {
             Intent i = new Intent(this,UsersActivity.class);
             startActivity(i);
+            return true;
 
         } else if (id == R.id.nav_cart) {
             Intent i = new Intent(this,Cart.class);
             startActivity(i);
+            return true;
+        } else if (id == R.id.nav_qr) {
+            Intent i = new Intent(this,user_qrcode.class);
+            startActivity(i);
+            return true;
         } else if (id == R.id.nav_share) {
+            Intent i = new Intent(this,Status.class);
+            startActivity(i);
+            return true;
 
-        } else if (id == R.id.nav_myroom) {
-
+        }else if(id==R.id.nav_myroom){
+            Intent i = new Intent(this,own_room.class);
+            startActivity(i);
+            return true;
+        }else if(id == R.id.nav_logout){
+            mAuth.signOut();
+            Intent i = new Intent(this,EmailPasswordActivity.class);
+            startActivity(i);
+            return true;
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_user);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
 
 
