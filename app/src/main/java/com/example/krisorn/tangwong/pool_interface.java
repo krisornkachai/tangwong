@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,6 +35,7 @@ public class pool_interface extends AppCompatActivity {
     private String getKey,getcount ;
     private  String temp ;
     private long max = 0 ;
+    private TextView topic;
     private long number = 0;
     private ProgressDialog mProgressDialog;
     List<FormObject> formObjects = new ArrayList<FormObject>();
@@ -42,6 +44,7 @@ public class pool_interface extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_pool_interface);
+                topic = findViewById(R.id.texttemp);
                 mAuth= FirebaseAuth.getInstance();
                 final FirebaseUser user = mAuth.getCurrentUser();
                 Polldatabase = FirebaseDatabase.getInstance().getReference();
@@ -59,7 +62,7 @@ public class pool_interface extends AppCompatActivity {
                 mLinearLayout = (LinearLayout) findViewById(R.id.poll_interface);
                 formBuilder = new FormBuilder(pool_interface.this, mLinearLayout);
                 formObjects.clear();
-                formObjects.add(new FormHeader().setTitle(Question));
+                topic.setText(Question);
                 if(dataSnapshot.child("room").child(getKey).child("Poll").child(getcount).child("Choice").getChildrenCount() >= 1) {
                     for (int i = 0; i < getChoice; i++) {
                         final int finalI = i;
