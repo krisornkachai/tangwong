@@ -211,7 +211,7 @@ public class StatusCostomerAdapter extends RecyclerView.Adapter<StatusViewHolder
                                                     }else  if(mSelected.equals("ดูรายการ")){
                                                        int countItem = (int) dataSnapshot.child("q").child("queue").child(String.valueOf(i)).child("items").getChildrenCount();
                                                         ;
-                                                        final String[] list = new String[countItem+1];
+                                                        final String[] list = new String[countItem+2];
                                                         for(int coutLoop =0;coutLoop<countItem;coutLoop++){
                                                             list[coutLoop]=dataSnapshot.child("q").child("queue").child(String.valueOf(i))
                                                                     .child("items").child(String.valueOf(coutLoop)).child("productName").getValue(String.class)
@@ -221,6 +221,9 @@ public class StatusCostomerAdapter extends RecyclerView.Adapter<StatusViewHolder
                                                         }
                                                         list[countItem]="รายละเอียดเพิ่มเติม: " + dataSnapshot.child("q").child("queue").child(String.valueOf(i))
                                                                 .child("moreDetail").getValue(String.class);
+
+                                                        list[countItem+1]="ผู้เข้าคิว: " + dataSnapshot.child("q").child("queue").child(String.valueOf(i))
+                                                                .child("nameuser").getValue(String.class);
 
                                                         AlertDialog.Builder builder =
                                                                 new AlertDialog.Builder(context);

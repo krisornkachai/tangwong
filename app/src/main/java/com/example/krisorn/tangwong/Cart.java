@@ -71,6 +71,7 @@ public class Cart extends AppCompatActivity
     String name = null;
     String phoneNumber= null;
     String roomNumber= null;
+    String nameuser;
 
 
     @Override
@@ -122,6 +123,7 @@ public class Cart extends AppCompatActivity
                             try {
                                 turnq = dataSnapshot.child("room").child(livenow).child("q").child("queue").getChildrenCount();
                                 name = dataSnapshot.child("room").child(livenow).child("name").getValue(String.class);
+                                nameuser = dataSnapshot.child("user").child(user.getUid()).child("name").getValue(String.class);
                                 noOfOder = dataSnapshot.child("user").child(user.getUid()).child("orderNow").getChildrenCount();
                                 Log.d("trunq", "trunq !!!!!" + turnq);
                             }catch (Exception e){}
@@ -247,7 +249,8 @@ public class Cart extends AppCompatActivity
                         edtAddress.getText().toString(),
                         txtTotalPrice.getText().toString(),
                         cart,
-                        roomNumber
+                        roomNumber,
+                        nameuser
                 );
                 Request requestUser = new Request(
                         "wait",
@@ -257,7 +260,8 @@ public class Cart extends AppCompatActivity
                         edtAddress.getText().toString(),
                         txtTotalPrice.getText().toString(),
                         cart,
-                        roomNumber
+                        roomNumber,
+                        nameuser
                 );
                 // user = mAuth.getCurrentUser();
                 Log.d("database","livenow"+livenow);

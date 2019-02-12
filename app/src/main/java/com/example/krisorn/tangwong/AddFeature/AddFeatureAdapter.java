@@ -117,6 +117,7 @@ public class AddFeatureAdapter extends RecyclerView.Adapter<AddFeatureViewHolder
                                     mDatabase.child("room").child(roomLiveNow).child("viewqueue").child("typeOfFeture").setValue("viewqueue");
                                     mDatabase.child("room").child(roomLiveNow).child("viewqueue").child("typeOfFetureShow").setValue("admin");
                                     mDatabase.child ("room").child (roomLiveNow).child ("viewqueue").child ("typepicture").setValue ("https://firebasestorage.googleapis.com/v0/b/tangwong-862c9.appspot.com/o/Photos%2Fic_q.png?alt=media&token=cf77e22b-9ad7-4528-b7fe-5f26d6962560");
+
                                 }
 
                                 @Override

@@ -7,6 +7,16 @@ import java.util.List;
 public class Request {
     private String status;
     private String uid;
+    private String nameuser;
+
+    public String getNameuser() {
+        return nameuser;
+    }
+
+    public void setNameuser(String nameuser) {
+        this.nameuser = nameuser;
+    }
+
     private String phone;
     private String roomNumber;
 
@@ -88,7 +98,7 @@ public class Request {
         this.status = status;
     }
 
-    public Request(String status, String uid, String phone, String name, String moreDetail, String total, List<Order> items,String roomNumber) {
+    public Request(String status, String uid, String phone, String name, String moreDetail, String total, List<Order> items,String roomNumber,String nameuser) {
         this.status = status;
         this.uid = uid;
         this.phone = phone;
@@ -97,6 +107,7 @@ public class Request {
         this.total = total;
         this.items = items;
         this.roomNumber= roomNumber;
+        this.nameuser = nameuser;
 
     }
 }
