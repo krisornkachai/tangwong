@@ -3,6 +3,7 @@ package com.example.krisorn.tangwong;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -54,6 +55,7 @@ public class AddFeatureActivity extends AppCompatActivity
     public DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
     AddFeatureAdapter adapter;
+    private BottomNavigationView bottomNavigationView;
     public int countOrderNow=0;
 
 
@@ -75,6 +77,10 @@ public class AddFeatureActivity extends AppCompatActivity
         loadListItem();
 
 
+
+
+
+
         //side bar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_user);
         setSupportActionBar(toolbar);
@@ -84,7 +90,6 @@ public class AddFeatureActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_add_feature);
-        Log.d("testSideNav","---------------");
         navigationView.setNavigationItemSelectedListener(AddFeatureActivity.this);
         navigationView.bringToFront();
         //end side bar
@@ -136,35 +141,43 @@ public class AddFeatureActivity extends AppCompatActivity
         if (id == R.id.nav_room) {
             Intent i = new Intent(this,user_roomActivity.class);
             startActivity(i);
+            return true;
         } else if (id == R.id.nav_add_room) {
             Intent i = new Intent(this,create_roomActiviity.class);
             startActivity(i);
+            return true;
 
         } else if (id == R.id.nav_profile) {
             Intent i = new Intent(this,UsersActivity.class);
             startActivity(i);
+            return true;
 
         } else if (id == R.id.nav_cart) {
             Intent i = new Intent(this,Cart.class);
             startActivity(i);
+            return true;
         } else if (id == R.id.nav_qr) {
             Intent i = new Intent(this,user_qrcode.class);
             startActivity(i);
-
+            return true;
         } else if (id == R.id.nav_share) {
             Intent i = new Intent(this,Status.class);
             startActivity(i);
+            return true;
 
         }else if(id==R.id.nav_myroom){
             Intent i = new Intent(this,own_room.class);
             startActivity(i);
-
+            return true;
+        }else if(id == R.id.nav_logout){
+            mAuth.signOut();
+            Intent i = new Intent(this,EmailPasswordActivity.class);
+            startActivity(i);
+            return true;
         }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_add_feature);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_user);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
 }

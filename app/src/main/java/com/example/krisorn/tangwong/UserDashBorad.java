@@ -226,7 +226,6 @@ public class UserDashBorad extends AppCompatActivity
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
-    @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         Log.d("can select nav","can select nav");
         // Handle navigation view item clicks here.
@@ -235,35 +234,45 @@ public class UserDashBorad extends AppCompatActivity
         if (id == R.id.nav_room) {
             Intent i = new Intent(this,user_roomActivity.class);
             startActivity(i);
+            return true;
         } else if (id == R.id.nav_add_room) {
             Intent i = new Intent(this,create_roomActiviity.class);
             startActivity(i);
+            return true;
 
         } else if (id == R.id.nav_profile) {
             Intent i = new Intent(this,UsersActivity.class);
             startActivity(i);
+            return true;
 
         } else if (id == R.id.nav_cart) {
             Intent i = new Intent(this,Cart.class);
             startActivity(i);
+            return true;
         } else if (id == R.id.nav_qr) {
             Intent i = new Intent(this,user_qrcode.class);
             startActivity(i);
-
+            return true;
         } else if (id == R.id.nav_share) {
             Intent i = new Intent(this,Status.class);
             startActivity(i);
+            return true;
 
         }else if(id==R.id.nav_myroom){
             Intent i = new Intent(this,own_room.class);
             startActivity(i);
-
+            return true;
+        }else if(id == R.id.nav_logout){
+            mAuth.signOut();
+            Intent i = new Intent(this,EmailPasswordActivity.class);
+            startActivity(i);
+            return true;
         }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_own_room);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_dash_board);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 
 
 }
