@@ -101,11 +101,11 @@
                     android:background="@drawable/rounded_corner"
                     android:ems="10"
                     android:fontFamily="@font/itim"
+                    android:hint="Room Name"
                     android:inputType="textPersonName"
-                    android:text="Room Name"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
 
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/btn_add_room" />
 
                 <EditText
@@ -118,8 +118,8 @@
                     android:background="@drawable/rounded_corner"
                     android:ems="10"
                     android:fontFamily="@font/itim"
+                    android:hint="Detail"
                     android:inputType="textPersonName"
-                    android:text="Detail"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txt_create_room_name" />
@@ -134,8 +134,8 @@
                     android:background="@drawable/rounded_corner"
                     android:ems="10"
                     android:fontFamily="@font/itim"
+                    android:hint="Type Room"
                     android:inputType="textPersonName"
-                    android:text="Type Room"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txt_create_room_detail" />

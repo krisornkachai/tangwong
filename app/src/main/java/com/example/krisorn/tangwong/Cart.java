@@ -119,11 +119,12 @@ public class Cart extends AppCompatActivity
                     mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                            turnq = dataSnapshot.child("room").child(livenow).child("q").child("queue").getChildrenCount();
-                            name = dataSnapshot.child("room").child(livenow).child("name").getValue(String.class);
-                            noOfOder= dataSnapshot.child("user").child(user.getUid()).child("orderNow").getChildrenCount();
-                            Log.d("trunq","trunq !!!!!"+turnq);
+                            try {
+                                turnq = dataSnapshot.child("room").child(livenow).child("q").child("queue").getChildrenCount();
+                                name = dataSnapshot.child("room").child(livenow).child("name").getValue(String.class);
+                                noOfOder = dataSnapshot.child("user").child(user.getUid()).child("orderNow").getChildrenCount();
+                                Log.d("trunq", "trunq !!!!!" + turnq);
+                            }catch (Exception e){}
 
 
 

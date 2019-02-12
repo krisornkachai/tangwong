@@ -11,49 +11,58 @@
         android:scaleType="centerCrop"
         android:src="@drawable/bg2_8"/>
 
-   <LinearLayout
-       android:id="@+id/lin3"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:orientation="vertical"
-       android:weightSum="5">
-       <TimePicker
-           android:id="@+id/timepicker"
-           android:layout_marginTop="20dp"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_weight="3"
-           android:timePickerMode="clock"
-           tools:ignore="MissingConstraints"></TimePicker>
+    <LinearLayout
+        android:id="@+id/lin3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="5">
+        <TimePicker
+            android:id="@+id/timepicker"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:timePickerMode="clock"
+            tools:ignore="MissingConstraints"></TimePicker>
+        <EditText
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:hint="text"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_corner"
+            android:layout_margin="20dp"
+            android:inputType="textPersonName"
+            android:layout_marginTop="10dp" />
 
-       <EditText
-           android:id="@+id/text"
-           android:layout_width="match_parent"
-           android:layout_height="43dp"
-           android:layout_margin="20dp"
-           android:layout_marginTop="10dp"
-           android:layout_weight="1"
-           android:background="@drawable/rounded_corner"
-           android:fontFamily="@font/itim"
-           android:hint="text"
-           android:inputType="textPersonName" />
-
-       <Button
-           android:id="@+id/set"
-           style="@style/Widget.AppCompat.Button.Colored"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_gravity="center"
-           android:fontFamily="@font/itim"
-           android:includeFontPadding="true"
-           android:onClick="click"
-           android:text="set"
-           android:theme="@style/ThemeOverlay.MyDarkButton"
-           app:layout_constraintBottom_toBottomOf="parent"
-           app:layout_constraintEnd_toEndOf="parent"
-           app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintTop_toBottomOf="@+id/password" />
-   </LinearLayout>
+        <Button
+            android:id="@+id/set"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ตั้งค่า"
+            android:layout_gravity="center"
+            android:onClick="click"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password"
+            android:theme="@style/ThemeOverlay.MyDarkButton"
+            style="@style/Widget.AppCompat.Button.Colored" />
+        <Button
+            android:id="@+id/events"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="กำหนดการ"
+            android:layout_gravity="center"
+            android:onClick="click"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password"
+            android:theme="@style/ThemeOverlay.MyDarkButton"
+            style="@style/Widget.AppCompat.Button.Colored" />
+    </LinearLayout>
 
 
 

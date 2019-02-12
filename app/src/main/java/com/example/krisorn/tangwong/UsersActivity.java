@@ -213,6 +213,7 @@ public class UsersActivity extends AppCompatActivity
                         mDatabase.child("user").child(uid).child("keep_noti").child(String.valueOf(count)).child("text").setValue(timetext);
                         mDatabase.child("user").child(uid).child("keep_noti").child(String.valueOf(count)).child("room").setValue(roomname);
                         mDatabase.child("user").child(uid).child("keep_noti").child(String.valueOf(count)).child("time").setValue(H);
+                        mDatabase.child("user").child(uid).child("keep_noti").child(String.valueOf(count)).child("status").setValue("ยังไม่ได้ลบ");
                     }
 
 
@@ -299,8 +300,8 @@ public class UsersActivity extends AppCompatActivity
         mDatabase.child("user").child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                binding.countMyRoom.setText(String.valueOf(dataSnapshot.child("owner").getChildrenCount()));
-                binding.countMyJoinRoom.setText(String.valueOf(dataSnapshot.child("live").getChildrenCount()));
+                binding.countMyRoom.setText(String.valueOf(dataSnapshot.child("live").getChildrenCount()));
+                binding.countMyJoinRoom.setText(String.valueOf(dataSnapshot.child("owner").getChildrenCount()));
                 binding.myPhoneNumber.setText(dataSnapshot.child("phoneNumber").getValue(String.class));
                 binding.myEmail.setText(user.getEmail());
                 try {
@@ -543,9 +544,6 @@ public class UsersActivity extends AppCompatActivity
         }else if(id==R.id.nav_myroom){
             Intent i = new Intent(this,own_room.class);
             startActivity(i);
-
-        }else if (id == R.id.nav_maps){
-
 
         }else if(id == R.id.nav_logout){
             mAuth.signOut();

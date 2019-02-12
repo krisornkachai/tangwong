@@ -148,6 +148,7 @@ public class registerActivity extends AppCompatActivity implements
                             mDatabase.child("user").child(user.getUid()).child("notification").setValue("0");
                             mDatabase.child ("user").child (user.getUid()).child ("time").child ("status").setValue("0");
                             mDatabase.child("user").child(user.getUid()).child("pathPhoto").setValue(url);
+                            mDatabase.child("user").child(user.getUid()).child("livenow").setValue("0");
 
                             /*
 

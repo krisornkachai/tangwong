@@ -249,6 +249,8 @@ public class showtime extends AppCompatActivity {
                             Intent i = new Intent(showtime.this,showtime.class);
                             startActivity(i);
 
+
+
                         }
                     }
 

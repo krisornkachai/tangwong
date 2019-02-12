@@ -209,7 +209,7 @@ public class StatusCostomerAdapter extends RecyclerView.Adapter<StatusViewHolder
                                                         context.startActivity(intentt);
 
                                                     }else  if(mSelected.equals("ดูรายการ")){
-                                                   /*     int countItem = (int) dataSnapshot.child("q").child("queue").child(String.valueOf(i)).child("items").getChildrenCount();
+                                                       int countItem = (int) dataSnapshot.child("q").child("queue").child(String.valueOf(i)).child("items").getChildrenCount();
                                                         ;
                                                         final String[] list = new String[countItem+1];
                                                         for(int coutLoop =0;coutLoop<countItem;coutLoop++){
@@ -239,7 +239,7 @@ public class StatusCostomerAdapter extends RecyclerView.Adapter<StatusViewHolder
                                                         builder.show();
                                                         Log.d("liststatus","ดูรายการ");
 
-*/
+
                                                     }
 
                                                     Log.d("listStatus", dataSnapshot.child("q").child("queue").child(String.valueOf(i)).child("status").getValue(String.class));
