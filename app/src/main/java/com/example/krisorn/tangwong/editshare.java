@@ -24,10 +24,10 @@ public class editshare extends AppCompatActivity {
     private String id ;
     private TimePicker time;
     public DatabaseReference nameCard;
-    private String hr,mi;
+    private String name;
     private FirebaseAuth mAuth;
     private String uid;
-    private int count,count2,sum;
+    private int count,count2,sum,me_sum;
     private RadioGroup radioGroup;
     private String a;
     private boolean aa =true;
@@ -46,6 +46,7 @@ public class editshare extends AppCompatActivity {
                 uid = user.getUid();
 
                 id = dataSnapshot.child ("user").child (uid).child ("livenow").getValue (String.class);
+                name = dataSnapshot.child("user").child(uid).child("name").getValue(String.class);
                 if(!dataSnapshot.child("room").child(id).hasChild("money"))
                 {
                     count = 1;
@@ -59,7 +60,16 @@ public class editshare extends AppCompatActivity {
                     count++;
                     count2++;
                     sum = Integer.parseInt(dataSnapshot.child("room").child(id).child("money").child("total").getValue(String.class));
+                    if(!dataSnapshot.child("room").child(id).child("money").hasChild("share"))
+                    {
+                        me_sum = 0;
+                    }
+                    else
+                    {
+                        me_sum = Integer.parseInt(dataSnapshot.child("room").child(id).child("money").child("share").child(uid).getValue(String.class));
+                    }
                 }
+
             }
 
             @Override
@@ -95,18 +105,21 @@ public class editshare extends AppCompatActivity {
             {
                 a = String.valueOf(price.getText().toString());
                 sum = sum+(Integer.parseInt(a));
-                mDatabase.child("room").child(id).child("money").child("list").child("+").child(String.valueOf(count)).setValue(String.valueOf(list.getText().toString())+" "+String.valueOf(price.getText().toString()));
+                me_sum = me_sum +(Integer.parseInt(a));
+                mDatabase.child("room").child(id).child("money").child("list").child("+").child(String.valueOf(count)).setValue(name+" : " + String.valueOf(list.getText().toString())+" "+String.valueOf(price.getText().toString()));
             }
             else
             {
                  a = String.valueOf(price.getText().toString());
                  int b = Integer.parseInt(a);
                  sum = sum - b;
-                mDatabase.child("room").child(id).child("money").child("list").child("-").child(String.valueOf(count2)).setValue(String.valueOf(list.getText().toString())+" "+String.valueOf(price.getText().toString()));
+                me_sum = me_sum -b;
+                mDatabase.child("room").child(id).child("money").child("list").child("-").child(String.valueOf(count2)).setValue(name+" : " + String.valueOf(list.getText().toString())+" "+String.valueOf(price.getText().toString()));
             }
 
 
             mDatabase.child("room").child(id).child("money").child("total").setValue(String.valueOf(sum));
+            mDatabase.child("room").child(id).child("money").child("share").child(uid).setValue(String.valueOf(me_sum));
             Intent i = new Intent(editshare.this,shareprice.class);
             startActivity(i);
 

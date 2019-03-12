@@ -109,6 +109,26 @@ public class shareprice extends AppCompatActivity {
 
 
                     Arr.add("Average : " + String.valueOf(y) );
+                    int me;
+                    if(dataSnapshot.child("room").child(id).child("money").hasChild("share"))
+                    {
+                        if(dataSnapshot.child("room").child(id).child("money").child("share").hasChild(uid))
+                        {
+                            me = Integer.parseInt(dataSnapshot.child("room").child(id).child("money").child("share").child(uid).getValue(String.class));
+                        }
+                        else
+                        {
+                            me =0;
+                        }
+                    }
+                    else
+                    {
+                        me = 0;
+                    }
+
+                    int me2 = (-1*me) + y;
+
+                    Arr.add("my money  : " + String.valueOf(me2) );
 
                 }
 
