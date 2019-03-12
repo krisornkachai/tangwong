@@ -46,7 +46,7 @@ public class mappick extends FragmentActivity implements OnMapReadyCallback, Loc
     //getcurrent location;
     public  String tvLongi;
     public  String tvLati;
-    public static String nameUser;
+    public  String nameUser;
     public double longx ;
     public double latix ;
     public  double dLatitude ;
@@ -161,17 +161,19 @@ public class mappick extends FragmentActivity implements OnMapReadyCallback, Loc
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     getKey = dataSnapshot.child("user").child(user.getUid()).child("livenow").getValue(String.class);
                     long getcount = dataSnapshot.child("room").child(getKey).child("Map").getChildrenCount();
-                    tvLongi = dataSnapshot.child("room").child(getKey).child("Map").child(String.valueOf(getcount-1)).child("location").child("long").getValue(String.class);
-                    tvLati = dataSnapshot.child("room").child(getKey).child("Map").child(String.valueOf(getcount-1)).child("location").child("lat").getValue(String.class);
-                    dLongitude = Double.valueOf(tvLongi);
-                    dLatitude = Double.valueOf(tvLati);
-                    Log.d("taxx","be");
-                    Log.d("taxx",String.valueOf(dLongitude));
-                    Log.d("taxx",String.valueOf(dLatitude));
-                    mMap.addMarker(new MarkerOptions().position(new LatLng(dLatitude, dLongitude))
-                            .title("My Location").icon(BitmapDescriptorFactory
-                                    .defaultMarker(BitmapDescriptorFactory.HUE_RED)));
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(dLatitude, dLongitude), 15));
+                    for(int i = 0 ; i < getcount ; i++) {
+                        tvLongi = dataSnapshot.child("room").child(getKey).child("Map").child(String.valueOf(i)).child("location").child("long").getValue(String.class);
+                        tvLati = dataSnapshot.child("room").child(getKey).child("Map").child(String.valueOf(i)).child("location").child("lat").getValue(String.class);
+                        dLongitude = Double.valueOf(tvLongi);
+                        dLatitude = Double.valueOf(tvLati);
+                        Log.d("taxx", "be");
+                        Log.d("taxx", String.valueOf(dLongitude));
+                        Log.d("taxx", String.valueOf(dLatitude));
+                        mMap.addMarker(new MarkerOptions().position(new LatLng(dLatitude, dLongitude))
+                                .title("My Location").icon(BitmapDescriptorFactory
+                                        .defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(dLatitude, dLongitude), 15));
+                    }
                     Log.d("taxx","af");
                     Log.d("taxx",String.valueOf(dLongitude));
                     Log.d("taxx",String.valueOf(dLatitude));
