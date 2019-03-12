@@ -638,6 +638,37 @@ public class AddFeatureAdapter extends RecyclerView.Adapter<AddFeatureViewHolder
 
                         }
                     });
+                }else   if (position==5){
+
+                    mDatabase.child("user").child(user.getUid()).child("livenow").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            final String roomLiveNow= dataSnapshot.getValue(String.class);
+                            mDatabase.child("room").child(roomLiveNow).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    mDatabase.child("room").child(roomLiveNow).child("feature").child(String.valueOf((dataSnapshot.child("feature").getChildrenCount())))
+                                            .setValue("map");
+                                    mDatabase.child("room").child(roomLiveNow).child("map").child("nameOfFeture").setValue("แผนที่");
+                                    mDatabase.child("room").child(roomLiveNow).child("map").child("detailOfFeture").setValue("ระบุตำเเหน่งของคุณ");
+                                    mDatabase.child("room").child(roomLiveNow).child("map").child("typeOfFeture").setValue("map");
+                                    mDatabase.child("room").child(roomLiveNow).child("map").child("typeOfFetureShow").setValue("both");
+                                    mDatabase.child ("room").child (roomLiveNow).child ("map").child ("typepicture").setValue ("https://firebasestorage.googleapis.com/v0/b/tangwong-862c9.appspot.com/o/Photos%2Fic_pool.png?alt=media&token=480efec9-9182-433e-aae1-c97f147d8681");
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
                 }
                 /*
                 else   if (position==8){
@@ -728,8 +759,8 @@ public class AddFeatureAdapter extends RecyclerView.Adapter<AddFeatureViewHolder
             String imgUrl = "https://firebasestorage.googleapis.com/v0/b/tangwong-862c9.appspot.com/o/Photos%2Fic_pool.png?alt=media&token=480efec9-9182-433e-aae1-c97f147d8681";
             Picasso.get().load(imgUrl).into(holder.imageView);
         }if (position==5){
-            holder.txtNameRoom.setText("สร้างกิจกรรม");
-            holder.txtDetail.setText("สร้างกิจกรรม");
+            holder.txtNameRoom.setText("เเชร์เเผนที่");
+            holder.txtDetail.setText("ระบุตำเเหน่งที่อยู่ของคุณ");
             String imgUrl = "https://firebasestorage.googleapis.com/v0/b/tangwong-862c9.appspot.com/o/Photos%2Fic_q.png?alt=media&token=cf77e22b-9ad7-4528-b7fe-5f26d6962560";
             Picasso.get().load(imgUrl).into(holder.imageView);
         }
@@ -739,6 +770,6 @@ public class AddFeatureAdapter extends RecyclerView.Adapter<AddFeatureViewHolder
     @Override
     public int getItemCount() {
 
-        return 5;
+        return 6;
     }
 }

@@ -16,6 +16,7 @@ import com.example.krisorn.tangwong.AddminListItemView;
 import com.example.krisorn.tangwong.R;
 import com.example.krisorn.tangwong.StatusCostomer;
 import com.example.krisorn.tangwong.create_event;
+import com.example.krisorn.tangwong.mappick;
 import com.example.krisorn.tangwong.notification;
 import com.example.krisorn.tangwong.ownRoom.carlender;
 import com.example.krisorn.tangwong.pool_interface;
@@ -169,6 +170,11 @@ public class AdminDashBoradAdapter extends RecyclerView.Adapter<AdminDashBoradVi
                                                     Intent i = new Intent(v.getContext(), room_information.class);
                                                     context.startActivity(i);
                                                     Log.d("statuspage","can info_room");
+
+                                                }else if(dataSnapshot.child("typeOfFeture").getValue(String.class).equals("map")){
+                                                    Log.d("statusPage","can map");
+                                                    Intent i = new Intent(v.getContext(), mappick.class);
+                                                    context.startActivity(i);
 
                                                 }
                                                 Log.d("statusPage","can click admin dash borad");
