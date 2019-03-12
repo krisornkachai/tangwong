@@ -164,13 +164,15 @@ public class mappick extends FragmentActivity implements OnMapReadyCallback, Loc
                     for(int i = 0 ; i < getcount ; i++) {
                         tvLongi = dataSnapshot.child("room").child(getKey).child("Map").child(String.valueOf(i)).child("location").child("long").getValue(String.class);
                         tvLati = dataSnapshot.child("room").child(getKey).child("Map").child(String.valueOf(i)).child("location").child("lat").getValue(String.class);
-                        dLongitude = Double.valueOf(tvLongi);
+                        nameUser = dataSnapshot.child("room").child(getKey).child("Map").child(String.valueOf(i)).child("location").child("userID").getValue(String.class);
+                        nameUser = dataSnapshot.child("user").child(nameUser).child("name").getValue(String.class);
+                                dLongitude = Double.valueOf(tvLongi);
                         dLatitude = Double.valueOf(tvLati);
                         Log.d("taxx", "be");
                         Log.d("taxx", String.valueOf(dLongitude));
                         Log.d("taxx", String.valueOf(dLatitude));
                         mMap.addMarker(new MarkerOptions().position(new LatLng(dLatitude, dLongitude))
-                                .title("My Location").icon(BitmapDescriptorFactory
+                                .title(nameUser).icon(BitmapDescriptorFactory
                                         .defaultMarker(BitmapDescriptorFactory.HUE_RED)));
                         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(dLatitude, dLongitude), 15));
                     }

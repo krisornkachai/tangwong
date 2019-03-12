@@ -84,6 +84,19 @@
         android:layout_marginLeft="8dp" />
 
 
+    <Button
+        android:id="@+id/showPriceDetail"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="224dp"
+        android:onClick="clickShowPrice"
+        android:text="show price"
+        app:layout_constraintBottom_toBottomOf="parent"
 
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/edit" />
 
 </android.support.constraint.ConstraintLayout>

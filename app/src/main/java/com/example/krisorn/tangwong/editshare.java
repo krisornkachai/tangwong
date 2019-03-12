@@ -127,4 +127,9 @@ public class editshare extends AppCompatActivity {
 
 
     }
+
+    public void clickShowPrice(View view) {
+        Intent i = new Intent(this,shareprice.class);
+        startActivity(i);
+    }
 }
