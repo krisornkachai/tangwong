@@ -89,6 +89,8 @@
         <activity android:name=".ownRoom.carlender" />
         <activity android:name=".create_event" />
         <activity android:name=".dayevent" />
+        <activity android:name=".editshare" />
+        <activity android:name=".shareprice" />
     </application>
 
 </manifest>

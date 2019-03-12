@@ -669,6 +669,38 @@ public class AddFeatureAdapter extends RecyclerView.Adapter<AddFeatureViewHolder
 
                         }
                     });
+                }      else   if (position==6){
+
+                    mDatabase.child("user").child(user.getUid()).child("livenow").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            final String roomLiveNow= dataSnapshot.getValue(String.class);
+
+                            mDatabase.child("room").child(roomLiveNow).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    mDatabase.child("room").child(roomLiveNow).child("feature").child(String.valueOf((dataSnapshot.child("feature").getChildrenCount())))
+                                            .setValue("share_money");
+                                    mDatabase.child("room").child(roomLiveNow).child("share_money").child("nameOfFeture").setValue("แบ่งกันจ่าย");
+                                    mDatabase.child("room").child(roomLiveNow).child("share_money").child("detailOfFeture").setValue("แบ่งรายจ่ายกับกลุ่ม");
+                                    mDatabase.child("room").child(roomLiveNow).child("share_money").child("typeOfFeture").setValue("share_money");
+                                    mDatabase.child("room").child(roomLiveNow).child("share_money").child("typeOfFetureShow").setValue("admin");
+                                    mDatabase.child ("room").child (roomLiveNow).child ("share_money").child ("typepicture").setValue ("https://firebasestorage.googleapis.com/v0/b/tangwong-862c9.appspot.com/o/Photos%2Fic_pool.png?alt=media&token=480efec9-9182-433e-aae1-c97f147d8681");
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
                 }
                 /*
                 else   if (position==8){
@@ -763,6 +795,13 @@ public class AddFeatureAdapter extends RecyclerView.Adapter<AddFeatureViewHolder
             holder.txtDetail.setText("ระบุตำเเหน่งที่อยู่ของคุณ");
             String imgUrl = "https://firebasestorage.googleapis.com/v0/b/tangwong-862c9.appspot.com/o/Photos%2Fic_q.png?alt=media&token=cf77e22b-9ad7-4528-b7fe-5f26d6962560";
             Picasso.get().load(imgUrl).into(holder.imageView);
+        }    if(position==6){
+
+            holder.txtNameRoom.setText("แบ่งกันจ่าย");
+            holder.txtDetail.setText("รายละเอียด");
+            String imgUrl = "https://firebasestorage.googleapis.com/v0/b/tangwong-862c9.appspot.com/o/Photos%2Fic_makegroup.png?alt=media&token=28954f50-beb4-44ca-b26d-4f8da2420ba6";
+            Picasso.get().load(imgUrl).into(holder.imageView);
+
         }
 
     }
@@ -770,6 +809,6 @@ public class AddFeatureAdapter extends RecyclerView.Adapter<AddFeatureViewHolder
     @Override
     public int getItemCount() {
 
-        return 6;
+        return 7;
     }
 }

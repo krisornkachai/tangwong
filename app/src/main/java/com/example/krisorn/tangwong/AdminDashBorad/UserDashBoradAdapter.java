@@ -15,6 +15,8 @@ import android.widget.TextView;
 import com.example.krisorn.tangwong.AddminListItemView;
 import com.example.krisorn.tangwong.R;
 import com.example.krisorn.tangwong.StatusCostomer;
+import com.example.krisorn.tangwong.editshare;
+import com.example.krisorn.tangwong.mappick;
 import com.example.krisorn.tangwong.notification;
 import com.example.krisorn.tangwong.ownRoom.carlender;
 import com.example.krisorn.tangwong.pool_interface;
@@ -167,6 +169,16 @@ public class UserDashBoradAdapter extends RecyclerView.Adapter<UserDashBoradView
                                                     context.startActivity(i);
                                                     Log.d("statuspage","can eccess viewpoll");
 
+                                                }else if(dataSnapshot.child("typeOfFeture").getValue(String.class).equals("map")){
+                                                    Log.d("statusPage","can map");
+                                                    Intent i = new Intent(v.getContext(), mappick.class);
+                                                    context.startActivity(i);
+
+                                                }else if(dataSnapshot.child("typeOfFeture").getValue(String.class).equals("share_money")) {
+                                                    Log.d("statusPage", "can calender_event");
+                                                    Intent i = new Intent(v.getContext(), editshare.class);
+                                                    context.startActivity(i);
+                                                    Log.d("statuspage", "can calender_event");
                                                 }
                                                 Log.d("statusPage","can click user dash borad");
                                             }catch (Exception e){Log.d("statuspage", String.valueOf(e));
