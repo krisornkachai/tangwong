@@ -60,7 +60,7 @@ public class editshare extends AppCompatActivity {
                     count++;
                     count2++;
                     sum = Integer.parseInt(dataSnapshot.child("room").child(id).child("money").child("total").getValue(String.class));
-                    if(!dataSnapshot.child("room").child(id).child("money").hasChild("share"))
+                    if(!dataSnapshot.child("room").child(id).child("money").child("share").hasChild(uid))
                     {
                         me_sum = 0;
                     }
